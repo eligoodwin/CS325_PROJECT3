@@ -9,10 +9,8 @@
 #include "InAndOut.hpp"
 using namespace std;
 void InAndOut::readData(struct city* cityData, char fileName[]){
-    int listLength = 0;
-    string numString;
-    
-    ifstream myFile;
+    string numString; //stores string which is converted into numericals
+    ifstream myFile; //file stream object
     
     myFile.open(fileName);
     cout << "Opening file: " << fileName << endl;

@@ -9,7 +9,7 @@
 #include <cstring>
 #include "InAndOut.hpp"
 #include "helper.hpp"
-
+#include "cityData.hpp"
 
 using namespace std;
 int main(int argc, const char * argv[]) {

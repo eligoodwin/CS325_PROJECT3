@@ -14,26 +14,27 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "cityData.hpp"
 
 //struct to save city data; stores city, x y coordinates, and its adjacency "list"
-struct city{
-    int cityNumber;
-    float xDimension;
-    float yDimension;
-    int* distancesList;
-    
-    //constructor
-    city(){
-        cityNumber = 0;
-        xDimension = 0;
-        yDimension = 0;
-        distancesList = NULL;
-    }
-    //destructor
-    ~city(){
-        delete []distancesList;
-    }
-};
+//struct city{
+//    int cityNumber; //city number
+//    float xDimension;   //x coord
+//    float yDimension;   //y coord
+//    int* distancesList; //adjacency list
+//    
+//    //constructor
+//    city(){
+//        cityNumber = 0;
+//        xDimension = 0;
+//        yDimension = 0;
+//        distancesList = NULL;
+//    }
+//    //destructor
+//    ~city(){
+//        delete []distancesList;
+//    }
+//};
 
 
 
