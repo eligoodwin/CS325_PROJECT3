@@ -12,9 +12,30 @@
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
-#include "CityInfo.h"
 #include <string>
 #include <sstream>
+
+//struct to save city data; stores city, x y coordinates, and its adjacency "list"
+struct city{
+    int cityNumber;
+    float xDimension;
+    float yDimension;
+    int* distancesList;
+    
+    //constructor
+    city(){
+        cityNumber = 0;
+        xDimension = 0;
+        yDimension = 0;
+        distancesList = NULL;
+    }
+    //destructor
+    ~city(){
+        delete []distancesList;
+    }
+};
+
+
 
 class InAndOut{
 public:
@@ -32,7 +53,7 @@ public:
      ** Post-Conditions: None
      ** Return: returns line count and struct with city coordinates loaded in it
      *********************************************************************/
-    int loadFile(struct city* cityData, char fileName[]);
+    void readData(struct city* cityData, char fileName[]);
     
     /*********************************************************************
      ** Function: saveFile
@@ -43,10 +64,32 @@ public:
      ** Post-Conditions: None
      ** Return: if file was successsfully saved to disk
      *********************************************************************/
-    bool saveFile(int **coordinateData, int lineCount);
+    void saveMatrix(int **coordinateData, int lineCount);
     
+    /*********************************************************************
+     ** Function: getLength
+     ** Description: gets length of the file
+     ** Parameters:
+     **     fileName: fileName of the file we are going to get the length of
+     ** Post-Conditions: None
+     ** Return: if file was successsfully saved to disk
+     *********************************************************************/
+    int getLength(char* fileName);
+    
+    /*********************************************************************
+     ** Function: saveResult
+     ** Description: saves the result of the finding the path
+     ** Parameters:
+            results: results of path traversal
+            distance: total length of the path
+     ** Post-Conditions: None
+     ** Return: none
+     *********************************************************************/
+    void saveResult(int* results, int distance, int listLength);
+    
+
 private:
-    const char OUTFILENAME[20] = "outfile.txt";
+    const char OUTFILENAME[20] = "results.txt";
 };
 
 

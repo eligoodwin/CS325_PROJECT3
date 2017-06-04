@@ -13,11 +13,25 @@ int calcDistance(float x1Coordinate, float x2Cooordinate, float y1Coordinate, fl
     return (int)round(sqrt(pow((x1Coordinate - x2Cooordinate), 2) + pow((y1Coordinate - y2Coordinate), 2)));
 }
 
-void fillMatrix(struct city* cityData, int matrix, int cityLength){
+void makeDistances(struct city* cityData, int cityLength){
+    cout << "calculating distances ... "<< endl;
     for(int i = 0; i < cityLength; ++i){
         for(int j = 0; j < cityLength; ++j){
-            
+            cityData[i].distancesList[j] = calcDistance(cityData[i].xDimension, cityData[j].xDimension, cityData[i].yDimension, cityData[j].yDimension);
         }
     }
     
+    return;
+}
+
+
+void printMatrix(struct city* cityData, int cityLength){
+    for(int i = 0; i < cityLength; ++i){
+        for(int j = 0; j < cityLength; ++j){
+            cout << cityData[i].distancesList[j] << " ";
+        }
+        cout << endl;
+    }
+    
+    return;
 }

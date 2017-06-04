@@ -8,70 +8,105 @@
 
 #include "InAndOut.hpp"
 using namespace std;
-
-int InAndOut::loadFile(struct city* cityData, char* fileName){
-    ifstream myFile;
-    int lineCount = 0;
-    
+void InAndOut::readData(struct city* cityData, char fileName[]){
+    int listLength = 0;
     string numString;
-    //load file
-    myFile.open(fileName);
-
-    cout << "Number of lines in file: "<<  lineCount << endl;
-    //make arrray of city-structs
-    city* cityTemp = new city[lineCount];
     
-    //read city coord data into struct array
-    int i = 0;
-    while(!myFile.eof()){
-        ++lineCount;
-        while(getline(myFile, numString)){
-            istringstream  iss(numString);
-            int n;
-            while(iss >> n){
-                cityTemp[i].cityNumber = n;
-                cityTemp[i].xDimension = n;
-                cityTemp[i].yDimension = n;
-            }
-                
-        }
-        ++i;
+    ifstream myFile;
+    
+    myFile.open(fileName);
+    cout << "Opening file: " << fileName << endl;
+    
+    if(!myFile){
+        cout << "Something went wrong" << endl;
     }
     
+    //read in the data
+    int i = 0;
+    while(!myFile.eof()){
     
-    cityData = cityTemp;
+        float temp[3];
+        
+        while(getline(myFile, numString)){
+            istringstream iss(numString);
+            int j = 0;
+            float n = 0;
+            while(iss >> n){
+                temp[j] = n;
+                ++j;
+            }
+            
+            cityData[i].cityNumber = temp[0];
+            cityData[i].xDimension = temp[1];
+            cityData[i].yDimension = temp[2];
+            ++i;
+
+        }
+        
+    }
     myFile.close();
     myFile.clear();
     
-    return lineCount;
+    return;
 }
 
+int InAndOut::getLength(char* fileName){
+    ifstream myFile;
+    int listLength = 0;
+    string numString;
+    myFile.open(fileName);
+    
+    
+    while(!myFile.eof()){
+        while(getline(myFile, numString)){
+            istringstream iss(numString);
+            ++listLength;
+        }
+    }
+    
+    myFile.close();
+    myFile.clear();
+    
+    return listLength;
+}
 
-bool InAndOut::saveFile(int **coordinateData, int lineCount){
-    bool saved = true;
+void InAndOut::saveMatrix(int** coordinatDeData, int lineCount){
     
-    //create file output object
     ofstream outFile;
-    
-    //create file to svae to
     outFile.open(OUTFILENAME, ios::out);
-    cout << "saving file as: " << OUTFILENAME << endl;
     
-    //write out adjacency matrix
     if(outFile.is_open()){
         for(int i = 0; i < lineCount; ++i){
             for(int j = 0; j < lineCount; ++j){
-                outFile << coordinateData[i][j] << " ";
+                outFile << coordinatDeData[i][j] << " ";
             }
             outFile << endl;
         }
     }
-    else{
-        cout << "Something went haywire. File was not saved." << endl;
-    }
     
+    cout << "saved file as: " << OUTFILENAME << endl;
+    
+    return;
+}
+
+
+void InAndOut::saveResult(int* results, int distance, int listLegnth){
+    
+    ofstream outFile;
+    outFile.open(OUTFILENAME, ios::out);
+    
+    if(outFile.is_open()){
+        outFile << distance << endl;
+        for(int i = 0; i < listLegnth; ++i){
+            outFile << results[i] << endl;
+        }
+        
+    }
     
     outFile.close();
     outFile.clear();
-    return saved;
+
+    
+    return;
 }
+

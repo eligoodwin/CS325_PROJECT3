@@ -29,9 +29,9 @@
 		6379509F1EE0FEAF00F8BD1E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InAndOut.cpp; sourceTree = "<group>"; };
 		637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InAndOut.hpp; sourceTree = "<group>"; };
-		637950A91EE0FF3100F8BD1E /* CityInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityInfo.h; sourceTree = "<group>"; };
 		637950AA1EE0FFFD00F8BD1E /* helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helper.cpp; sourceTree = "<group>"; };
 		637950AB1EE0FFFD00F8BD1E /* helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = helper.hpp; sourceTree = "<group>"; };
+		63FAAFC41EE2525B00D48A01 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				6379509F1EE0FEAF00F8BD1E /* main.cpp */,
+				63FAAFC41EE2525B00D48A01 /* test.txt */,
 				637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */,
 				637950AA1EE0FFFD00F8BD1E /* helper.cpp */,
 				637950AB1EE0FFFD00F8BD1E /* helper.hpp */,
-				637950A91EE0FF3100F8BD1E /* CityInfo.h */,
 				637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */,
 			);
 			path = PRO3;
@@ -262,6 +262,7 @@
 				637950A51EE0FEAF00F8BD1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
