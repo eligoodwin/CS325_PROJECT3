@@ -8,6 +8,9 @@
  *********************************************************************/
 #ifndef cityData_h
 #define cityData_h
+
+#include <cstddef>
+
 struct city{
     int cityNumber; //city number
     float xDimension;   //x coord
