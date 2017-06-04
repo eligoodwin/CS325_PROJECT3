@@ -13,6 +13,7 @@ struct city{
     float xDimension;   //x coord
     float yDimension;   //y coord
     int* distancesList; //adjacency list
+    bool visited; //visit status
     
     //constructor
     city(){
@@ -20,6 +21,7 @@ struct city{
         xDimension = 0;
         yDimension = 0;
         distancesList = NULL;
+        visited = false;
     }
     //destructor
     ~city(){
