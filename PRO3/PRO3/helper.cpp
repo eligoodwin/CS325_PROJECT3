@@ -40,3 +40,13 @@ void printMatrix(struct city* cityData, int cityLength){
     
     return;
 }
+
+int tourDistance(struct city* cityData, int cityLength){
+    int tourLength = 0;
+    
+    for(int i = 0; i < cityLength; ++i){
+        tourLength += cityData[i].distancesList[cityData[i + 1].cityNumber];
+    }
+    
+    return tourLength;
+}
