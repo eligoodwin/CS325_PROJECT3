@@ -43,11 +43,39 @@ void makeDistances(struct city* cityList, int cityLegnth);
 /*********************************************************************
  ** Function: printMatrix
  ** Description: prints contents of matrix to screen
- ** Parameters: cityMatrix: nxn matrix of values
- ** Pre-Conditions: none
- ** Post-Conditions: None
+ ** Parameters: 
+ **     cityData: struct containing relevant city data
+ **     cityLength: length of city data set list
+ ** Pre-Conditions: cityData must be nonempty
+ ** Post-Conditions: none
  ** Return: none
  *********************************************************************/
 void printMatrix(struct city* cityData, int cityLength);
 
+
+/*********************************************************************
+ ** Function: routeDistance
+ ** Description: calcs the distance of a route given a route
+ ** Parameters: 
+ **     cityRoute: contains a route between cities
+ **     cityLength: legnth of the struct city array
+ ** Pre-Conditions: none
+ ** Post-Conditions: None
+ ** Return: distance of tour
+ *********************************************************************/
+int routeDistance(struct city* cityRoute, int cityLength);
+
+
+
+/*********************************************************************
+ ** Function: printTour
+ ** Description: prints the tour to screen
+ ** Parameters:
+ **     cityRoute: contains a route between cities
+ **     cityLength: legnth of the struct city array
+ ** Pre-Conditions: none
+ ** Post-Conditions: None
+ ** Return: none
+ *********************************************************************/
+void printTour(struct city* cityRoute, int cityLength);
 #endif /* helper_hpp */

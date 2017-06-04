@@ -41,11 +41,23 @@ void printMatrix(struct city* cityData, int cityLength){
     return;
 }
 
-int tourDistance(struct city* cityData, int cityLength){
+
+//print tour if need be
+void printTour(struct city* cityData, int cityLength){
+    for(int i = 0; i < cityLength; ++i){
+        cout << cityData[i].cityNumber << ", " << endl;
+    }
+    
+    
+    return;
+}
+
+//calc route distance 
+int routeDistance(struct city* cityRoute, int cityLength){
     int tourLength = 0;
     
     for(int i = 0; i < cityLength; ++i){
-        tourLength += cityData[i].distancesList[cityData[i + 1].cityNumber];
+        tourLength += cityRoute[i].distancesList[cityRoute[i + 1].cityNumber];
     }
     
     return tourLength;
