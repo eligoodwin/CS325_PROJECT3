@@ -1,63 +1,83 @@
-/*********************************************************************
-** Filename: 2OPT.hpp
-** Author: Eli Goodwin, Benjamin Tate and Carlos La Hoz Daniels
-** Date: 2017/06/4
-** Description: This is used to perform OPT2 optimization of a
-** preexisting route. A route is fed in and using the principle of the
-** triangle equality, if two edges between two cities cross there might
-** be a shorter path between them, if that crossed path is eliminated. 
-** The algorithm tests if the result of performing a swap creates a 
-** shorter route.
-** eg:
-    A       B--                         A ---- B--
-      \   /
-        x       Distance1 > ? Distance2
-      /   \
-    X       Y--                         X ---- Y--
-** Input: preexisiting route, number of cities in the route
-** Output: structs containing city coorditnate info, txt files with saved city data
-*********************************************************************/
 #include "2OPT.hpp"
-#include "cityData.hpp"
-class TWO_OPT{
-public:
-    //properties
-    int cityLength;
-    struct city* currentTour;
+
+using namespace std;
+
+
+TWO_OPT::TWO_OPT(int lengthOfList, struct city * existingTour){
+    cityLength = lengthOfList;
+    currentTour = existingTour;
+    newTour =  new city[cityLength];
     
-    //methods
-    /*********************************************************************
-     ** Function: OPT2ALGO
-     ** Description: does the optimization of the currentTour
-     ** Parameters:
-     **     none
-     ** Pre-Conditions:
-     **     -a valid hamilitonian path must be in the property currentTour
-     **     -city length must be greater than 1
-     ** Post-Conditions: None
-     ** Return: returns a tour that has been swapped optimized
-     *********************************************************************/
-    struct city** OPT2ALGO();
-    
-private:
-    //properties
-    
-    
-    //methods
-    /*********************************************************************
-     ** Function: optSwap
-     ** Description: performs the swapping of the route so that it can be tested
-     ** if the new resulting route will be shorter or not
-     ** Parameters:
-     **     none
-     ** Pre-Conditions: 
-     **      a tour must be calculated before TWO_OPT can run
-     ** Post-Conditions: None
-     ** Return: returns a tour with swapped routes
-     *********************************************************************/
-    struct city** optSWap();
-    
-    
-    
+    //make a deep current tour into new tour
+    for(int i = 0; i < cityLength; ++i){
+        newTour[i] = currentTour[i];
+    }
     
 };
+
+TWO_OPT::~TWO_OPT(){
+    delete []currentTour;
+    currentTour = NULL;
+    delete []newTour;
+    newTour = NULL;
+    
+};
+
+
+void TWO_OPT::optSwap(int start, int end){
+    int oldRouteIdx;
+    int newRouteIdx = 0;
+    
+    for(oldRouteIdx = 0; oldRouteIdx < start; ++oldRouteIdx){
+        newTour[newRouteIdx] = currentTour[oldRouteIdx];
+        ++newRouteIdx;
+    }
+    
+    for(oldRouteIdx = end; oldRouteIdx > start; --oldRouteIdx){
+        newTour[newRouteIdx] = currentTour[oldRouteIdx];
+        ++newRouteIdx;
+    }
+    
+    for(oldRouteIdx = end + 1; oldRouteIdx < cityLength; ++oldRouteIdx){
+        newTour[newRouteIdx] = currentTour[oldRouteIdx];
+        ++newRouteIdx;
+    }
+    
+    return;
+}
+
+void TWO_OPT::opt2(long& bestDistance, long& latestDistance){
+    long newDistance;
+    
+    for(int i = 1; i < cityLength - 1; ++i){
+        for(int j = i + 1; j < cityLength; ++j){
+            optSwap(i, j);
+            currentTour = newTour;
+            newDistance = routeDistance(this->currentTour, cityLength);
+            if(newDistance < bestDistance){
+                latestDistance = newDistance;
+                return;
+            }
+        }
+    }
+    
+    
+    return;
+}
+
+
+struct city* TWO_OPT::OPT2ALGO(){
+    long newDistance = routeDistance(this->currentTour, this->cityLength); //get the current route distance of the passed in route/tour
+    long bestDistance = LONG_MAX; //set to infinity for comparison
+    long latestDistance = 0;
+    
+    while(newDistance < bestDistance){
+        bestDistance = newDistance;
+        //modify the new tour removing the crossing paths
+        opt2(bestDistance, latestDistance);
+        newDistance = latestDistance;
+    
+    }
+    
+    return newTour;
+}
