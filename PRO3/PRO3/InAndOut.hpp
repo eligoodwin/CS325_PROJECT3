@@ -16,28 +16,6 @@
 #include <sstream>
 #include "cityData.hpp"
 
-//struct to save city data; stores city, x y coordinates, and its adjacency "list"
-//struct city{
-//    int cityNumber; //city number
-//    float xDimension;   //x coord
-//    float yDimension;   //y coord
-//    int* distancesList; //adjacency list
-//    
-//    //constructor
-//    city(){
-//        cityNumber = 0;
-//        xDimension = 0;
-//        yDimension = 0;
-//        distancesList = NULL;
-//    }
-//    //destructor
-//    ~city(){
-//        delete []distancesList;
-//    }
-//};
-
-
-
 class InAndOut{
 public:
     /*********************************************************************
@@ -87,10 +65,22 @@ public:
      ** Return: none
      *********************************************************************/
     void saveResult(int* results, int distance, int listLength);
+
+    /*********************************************************************
+     ** Function: runtime
+     ** Description: saves the runtime of the algo
+     ** Parameters:
+        runTime: calculated runtime of TSP alogrithm
+     ** Post-Conditions: None
+     ** Return: none
+     *********************************************************************/
+    void saveRunTime(double runtime);
     
 
 private:
     const char OUTFILENAME[20] = "results.txt";
+    const char RUNTIMERESULT[20] = "runtime.txt";
+    
 };
 
 

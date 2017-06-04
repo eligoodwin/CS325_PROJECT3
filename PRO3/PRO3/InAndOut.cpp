@@ -108,3 +108,19 @@ void InAndOut::saveResult(int* results, int distance, int listLegnth){
     return;
 }
 
+
+void InAndOut::saveRunTime(double runtime){
+    ofstream outFile;
+    
+    outFile.open(RUNTIMERESULT, ios::out);
+    if(outFile.is_open()){
+        outFile << runtime << endl;
+    }
+    
+    outFile.close();
+    outFile.clear();
+    
+    return;
+}
+
+

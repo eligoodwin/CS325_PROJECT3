@@ -7,6 +7,9 @@
 
 #include <iostream>
 #include <cstring>
+#include <time.h>
+#include <chrono>
+
 #include "InAndOut.hpp"
 #include "helper.hpp"
 #include "cityData.hpp"
@@ -26,7 +29,7 @@ int main(int argc, const char * argv[]) {
     
     int* solution = NULL; //array for solution
     int totalDistance = 0; //total distance of path
-    
+    long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object
     
     int cityLength = 0; //stores length of input
@@ -39,25 +42,37 @@ int main(int argc, const char * argv[]) {
     //read the data into the struct
     stuff.readData(cityCoordinates, fileIn);
 
-    //allocate the adjacency matrix
-    //cityDistances = new int*[cityLength];
-    
+    //allocate the adjacency "list" for each city
     for(int i = 0; i < cityLength; ++i){
         cityCoordinates[i].distancesList = new int[cityLength];
     }
         
-    //make the adjacecy matrix
+    //calc the distances
     makeDistances(cityCoordinates, cityLength);
+    
     //print matrix
     printMatrix(cityCoordinates, cityLength);
     
     //allocate solution array
     solution = new int[cityLength];
     
+    //calc runtime of alog
+    auto start = chrono::high_resolution_clock::now();
     
+    //start algo
+    /*
+     
+     
+     ALGORITHMS GO HERE
     
+     
+     */
     
-    
+    //final runtime
+    auto elapsed = chrono::high_resolution_clock::now() - start;
+    runTime = chrono::duration_cast<std::chrono::milliseconds>(elapsed).count();
+    //save runtime data
+    stuff.saveRunTime(runTime);
     //save results
     //stuff.saveResult(solution, totalDistance, cityLength);
     
