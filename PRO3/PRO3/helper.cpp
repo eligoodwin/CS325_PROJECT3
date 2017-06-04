@@ -8,13 +8,15 @@
 
 #include "helper.hpp"
 using namespace std;
-
+//calc distances
 int calcDistance(float x1Coordinate, float x2Cooordinate, float y1Coordinate, float y2Coordinate){
     return (int)round(sqrt(pow((x1Coordinate - x2Cooordinate), 2) + pow((y1Coordinate - y2Coordinate), 2)));
 }
 
+//make adjacency "list" for each city
 void makeDistances(struct city* cityData, int cityLength){
     cout << "calculating distances ... "<< endl;
+    
     for(int i = 0; i < cityLength; ++i){
         for(int j = 0; j < cityLength; ++j){
             cityData[i].distancesList[j] = calcDistance(cityData[i].xDimension, cityData[j].xDimension, cityData[i].yDimension, cityData[j].yDimension);
@@ -24,8 +26,11 @@ void makeDistances(struct city* cityData, int cityLength){
     return;
 }
 
-
+//print matrix if need be
 void printMatrix(struct city* cityData, int cityLength){
+    cout << endl;
+    cout << "Distances for the complete grapgh: " << endl;
+    //print results
     for(int i = 0; i < cityLength; ++i){
         for(int j = 0; j < cityLength; ++j){
             cout << cityData[i].distancesList[j] << " ";

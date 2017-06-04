@@ -71,6 +71,8 @@ int main(int argc, const char * argv[]) {
     //final runtime
     auto elapsed = chrono::high_resolution_clock::now() - start;
     runTime = chrono::duration_cast<std::chrono::milliseconds>(elapsed).count();
+    
+    cout << "Total runtime was: " << runTime << " milliseconds." << endl;
     //save runtime data
     stuff.saveRunTime(runTime);
     //save results

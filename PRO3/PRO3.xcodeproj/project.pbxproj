@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63342C001EE47B8B0052CD91 /* 2OPT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */; };
 		637950A01EE0FEAF00F8BD1E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6379509F1EE0FEAF00F8BD1E /* main.cpp */; };
 		637950A81EE0FEDB00F8BD1E /* InAndOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */; };
 		637950AC1EE0FFFD00F8BD1E /* helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 637950AA1EE0FFFD00F8BD1E /* helper.cpp */; };
@@ -26,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		63342BFD1EE4639C0052CD91 /* cityData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cityData.hpp; sourceTree = "<group>"; };
+		63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 2OPT.cpp; sourceTree = "<group>"; };
+		63342BFF1EE47B8B0052CD91 /* 2OPT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = 2OPT.hpp; sourceTree = "<group>"; };
 		6379509C1EE0FEAF00F8BD1E /* PRO3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PRO3; sourceTree = BUILT_PRODUCTS_DIR; };
 		6379509F1EE0FEAF00F8BD1E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InAndOut.cpp; sourceTree = "<group>"; };
@@ -68,6 +71,8 @@
 				6379509F1EE0FEAF00F8BD1E /* main.cpp */,
 				63FAAFC41EE2525B00D48A01 /* test.txt */,
 				637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */,
+				63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */,
+				63342BFF1EE47B8B0052CD91 /* 2OPT.hpp */,
 				637950AA1EE0FFFD00F8BD1E /* helper.cpp */,
 				637950AB1EE0FFFD00F8BD1E /* helper.hpp */,
 				637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */,
@@ -135,6 +140,7 @@
 			files = (
 				637950A01EE0FEAF00F8BD1E /* main.cpp in Sources */,
 				637950A81EE0FEDB00F8BD1E /* InAndOut.cpp in Sources */,
+				63342C001EE47B8B0052CD91 /* 2OPT.cpp in Sources */,
 				637950AC1EE0FFFD00F8BD1E /* helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
