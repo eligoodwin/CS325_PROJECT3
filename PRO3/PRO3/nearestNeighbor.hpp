@@ -6,4 +6,6 @@
 
 int nearestNeighbor (int* T, struct city* G, int numCities);
 
+struct city* nearestNeibhor(struct city* cityData, int numCities);
+
 #endif

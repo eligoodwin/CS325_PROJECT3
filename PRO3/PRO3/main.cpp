@@ -13,6 +13,8 @@
 #include "InAndOut.hpp"
 #include "helper.hpp"
 #include "cityData.hpp"
+#include "nearestNeighbor.hpp"
+#include "2OPT.hpp"
 
 using namespace std;
 int main(int argc, const char * argv[]) {
@@ -27,9 +29,9 @@ int main(int argc, const char * argv[]) {
         strcpy(fileIn, argv[1]);
     }
     
-    int* solution = NULL; //array for solution
-    //struct city* otherSolution = NULL;
-    
+    //int* tour = NULL; //array for solution
+    struct city* tempTour = NULL;
+    struct city* finTour = NULL;
     int totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object
@@ -56,19 +58,23 @@ int main(int argc, const char * argv[]) {
     printMatrix(cityCoordinates, cityLength);
     
     //allocate solution array
-    solution = new int[cityLength];
+    //tour = new int[cityLength];
     
     //calc runtime of alog
     auto start = chrono::high_resolution_clock::now();
+    //int* T = NULL;
+    //totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
+    
     
     //start algo
-    /*
-     
-     
-     ALGORITHMS GO HERE
+    //begin
+    tempTour = nearestNeibhor(cityCoordinates, cityLength);
     
-     
-     */
+    //init twoOPT
+    TWO_OPT twoOptItUp(cityLength, tempTour);
+    
+    //start algo
+    finTour = twoOptItUp.OPT2ALGO();
     
     //final runtime
     auto elapsed = chrono::high_resolution_clock::now() - start;
@@ -77,11 +83,15 @@ int main(int argc, const char * argv[]) {
     cout << "Total runtime was: " << runTime << " milliseconds." << endl;
     //save runtime data
     stuff.saveRunTime(runTime);
+    //calc final distance
+    totalDistance  = routeDistance(finTour, cityLength);
     //save results
-    //stuff.saveResult(solution, totalDistance, cityLength);
+    stuff.saveResult(finTour, totalDistance, cityLength);
     
     //clean everything up
-    delete []solution;
+    //delete []solution;
+    
+    delete []tempTour;
     delete []cityCoordinates;
     
     return 0;

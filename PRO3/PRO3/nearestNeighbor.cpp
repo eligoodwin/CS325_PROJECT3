@@ -37,3 +37,34 @@ int nearestNeighbor (int* T, struct city* G, int numCities) {
 	distance += location->distancesList[0];
 	return distance;
 }
+
+
+struct city* nearestNeibhor(struct city* cityData, int numCities){
+    struct city* temp = new city[numCities];
+    struct city* location = &cityData[0];
+    location->visited = true;
+    
+    struct city* nearest = NULL;
+    temp[0].cityNumber = location->cityNumber;
+    
+    
+    for(int i = 0; i < numCities; ++i){
+        for(int j = 0; j < numCities; ++j){
+            if(!(cityData[j].visited)){
+                if(nearest == NULL){
+                    nearest = &cityData[j];
+                }
+                else if(location->distancesList[j] < location->distancesList[nearest->cityNumber]){
+                    nearest = &cityData[j];
+                }
+            }
+        }
+        
+        temp[i].cityNumber = nearest->cityNumber;
+        nearest->visited = true;
+        location = nearest;
+        nearest = NULL;
+    }
+    
+    return temp;
+}
