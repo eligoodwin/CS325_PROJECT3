@@ -28,8 +28,7 @@ void makeDistances(struct city* cityData, int cityLength){
 
 //print matrix if need be
 void printMatrix(struct city* cityData, int cityLength){
-    cout << endl;
-    cout << "Distances for the complete grapgh: " << endl;
+    cout << "\nDistances for the complete graph: " << endl;
     //print results
     for(int i = 0; i < cityLength; ++i){
         for(int j = 0; j < cityLength; ++j){
