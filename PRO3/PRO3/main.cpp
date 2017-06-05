@@ -28,6 +28,8 @@ int main(int argc, const char * argv[]) {
     }
     
     int* solution = NULL; //array for solution
+    //struct city* otherSolution = NULL;
+    
     int totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object

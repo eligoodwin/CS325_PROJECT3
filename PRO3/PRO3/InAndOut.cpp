@@ -88,7 +88,7 @@ void InAndOut::saveMatrix(int** coordinatDeData, int lineCount){
 }
 
 
-void InAndOut::saveResult(int* results, int distance, int listLegnth){
+void InAndOut::saveResult(struct city* tour, int distance, int listLegnth){
     
     ofstream outFile;
     outFile.open(OUTFILENAME, ios::out);
@@ -96,9 +96,8 @@ void InAndOut::saveResult(int* results, int distance, int listLegnth){
     if(outFile.is_open()){
         outFile << distance << endl;
         for(int i = 0; i < listLegnth; ++i){
-            outFile << results[i] << endl;
+            outFile << tour[i].cityNumber << endl;
         }
-        
     }
     
     outFile.close();

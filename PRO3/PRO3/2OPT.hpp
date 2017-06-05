@@ -9,11 +9,11 @@
  ** The algorithm tests if the result of performing a swap creates a
  ** shorter route.
  ** eg:
-    A     B--                         A ---- B--
+    A     B--                          A ---- B--
      \   /
        x       Distance1 > ? Distance2
      /   \
-    X     Y--                         X ---- Y--
+    X     Y--                          X ---- Y--
  ** Input: preexisiting route, number of cities in the route
  ** Output: structs containing city coorditnate info, txt files with saved city data
  *********************************************************************/
@@ -28,9 +28,13 @@
 
 class TWO_OPT{
 public:
+    //constructors and destructors
+    TWO_OPT(int lengthOfList, struct city * existingTour);
+    ~TWO_OPT();
+    
     //properties
-    int cityLength; //city length
-    struct city* currentTour; //starting tour
+
+    
     //methods
     /*********************************************************************
      ** Function: OPT2ALGO
@@ -44,12 +48,12 @@ public:
      ** Return: returns a tour that has been swapped optimized
      *********************************************************************/
     struct city* OPT2ALGO();
-    TWO_OPT(int lenghtOfList, struct city* exisitingTour);
-    ~TWO_OPT();
     
 private:
     //properties
     struct city* newTour; // new tour
+    int cityLength; //city length
+    struct city* currentTour; //starting tour
 
     //methods
     /*********************************************************************
@@ -65,7 +69,17 @@ private:
      *********************************************************************/
     void optSwap(int start, int end);
     
-    
+    /*********************************************************************
+     ** Function: opt2
+     ** Description: performs the swapping of the route so that it can be tested
+     ** if the new resulting route will be shorter or not
+     ** Parameters:
+     **     none
+     ** Pre-Conditions:
+     **      a tour must be calculated before TWO_OPT can run
+     ** Post-Conditions: None
+     ** Return: returns a tour with swapped routes
+     *********************************************************************/
     void opt2(long& bestDistance, long& recentDistance);
 
 };

@@ -16,8 +16,11 @@ TWO_OPT::TWO_OPT(int lengthOfList, struct city * existingTour){
 };
 
 TWO_OPT::~TWO_OPT(){
-    delete []currentTour;
     currentTour = NULL;
+    for(int i = 0; i < cityLength; ++i){
+        delete []newTour[i].distancesList;
+    }
+    
     delete []newTour;
     newTour = NULL;
     
