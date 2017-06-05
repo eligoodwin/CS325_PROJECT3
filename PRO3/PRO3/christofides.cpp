@@ -5,6 +5,7 @@ using namespace std;
 int christofides (int* tour, struct city* G, int n) {
 	//Find the MST
 	vector<int>* T = prim(G, n);
+	cout << "T length = " << sizeof(T) / sizeof(T[0]) << endl;
 
 	//Find set of vertices with odd degree in T
 	vector<int> O = findOdd(T, n);
@@ -65,6 +66,9 @@ vector<int>* prim(struct city* G, int n) {
 		}
 	}
 
+	cout << "adjacencies length = " << sizeof(adjacencies) / sizeof(adjacencies[0]) << endl;
+
+
 	return adjacencies;
 }
 
@@ -86,6 +90,7 @@ int minKey(int* key, bool* incl, int n) {
 }
 
 vector<int> findOdd(vector<int>* adjacencies, int n) {
+	cout << "adjacencies length in odd= " << sizeof(adjacencies) / sizeof(adjacencies[0]) << endl;
 	//Store vertices with odd degrees in new vector
 	vector<int> odds;
 	for (int i = 0; i < n; i++) {
@@ -98,6 +103,7 @@ vector<int> findOdd(vector<int>* adjacencies, int n) {
 }
 
 vector<int>* match(struct city* G, vector<int>* adjacencies, vector<int> odds, int n) {
+	cout << "adjacencies length in match = " << sizeof(adjacencies) / sizeof(adjacencies[0]) << endl;
 	int nearest, length;
 
 	//Copy MST into new vector
@@ -135,6 +141,14 @@ vector<int>* match(struct city* G, vector<int>* adjacencies, vector<int> odds, i
 		odds.erase(tmp);
 		odds.erase(first);
 	}
+
+	cout << "matching length = " << sizeof(matching) / sizeof(matching[0]) << endl;
+/*
+	for (int i = 0; i < n; i++) {
+		cout << "i = " << i << endl;
+		cout << "size = " << matching[i].size() << endl;
+	}
+*/
 
 	return matching;
 }
@@ -216,6 +230,7 @@ int hamilton(int* tour, struct city* G, vector<int> euler) {
 			//If next city hasn't been visited...
 			//Add distance to next city to dist
 			dist += G[*curr].distancesList[*next];
+			cout << "preliminary dist = " << dist << endl;
 			//Update curr
 			curr = next;
 			//Visit curr city and add cityNumber to tour
@@ -234,6 +249,7 @@ int hamilton(int* tour, struct city* G, vector<int> euler) {
 
 	//Add distance to final city to curr
 	dist += G[*curr].distancesList[*next];
+	cout << "final dist = " << dist << endl;
 
 	return dist;
 }
