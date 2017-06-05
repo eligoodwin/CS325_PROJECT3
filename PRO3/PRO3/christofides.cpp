@@ -4,14 +4,14 @@ using namespace std;
 
 int christofides (int* tour, struct city* G, int n) {
 	//Find the MST
-	vector<int>* T = prim(G, n);
-	cout << "T length = " << sizeof(T) / sizeof(T[0]) << endl;
+	vector<vector<int> > T = prim(G, n);
+	cout << "T length = " << T.size() << endl;
 
 	//Find set of vertices with odd degree in T
 	vector<int> O = findOdd(T, n);
 
 	//Find perfect matching M from O and combine edges of M and T to form H
-	vector<int>* H = match(G, T, O, n);
+	vector<vector<int> > H = match(G, T, O, n);
 
 	//Form Eulerian circuit in H
 	vector<int> E = euler(H, n);
@@ -23,7 +23,7 @@ int christofides (int* tour, struct city* G, int n) {
 	return dist;
 }
 
-vector<int>* prim(struct city* G, int n) {
+vector<vector<int> > prim(struct city* G, int n) {
 	int key[n];									//keys to find edge with min weight
 	bool incl[n];								//set of cities in MST
 	int parent[n];
@@ -57,7 +57,8 @@ vector<int>* prim(struct city* G, int n) {
 	}
 
 	//Set up vector of adjacencies for MST
-	vector<int> adjacencies[n];
+	vector<vector<int> > adjacencies;
+	adjacencies.resize(n);
 	for (int i = 0; i < n; i++) {
 		int j = parent[i];
 		if (j != -1) {
@@ -66,8 +67,7 @@ vector<int>* prim(struct city* G, int n) {
 		}
 	}
 
-	cout << "adjacencies length = " << sizeof(adjacencies) / sizeof(adjacencies[0]) << endl;
-
+	cout << "adjacencies length = " << adjacencies.size() << endl;
 
 	return adjacencies;
 }
@@ -89,8 +89,8 @@ int minKey(int* key, bool* incl, int n) {
 	return minIdx;
 }
 
-vector<int> findOdd(vector<int>* adjacencies, int n) {
-	cout << "adjacencies length in odd= " << sizeof(adjacencies) / sizeof(adjacencies[0]) << endl;
+vector<int> findOdd(vector<vector<int> > adjacencies, int n) {
+	cout << "adjacencies length in odd= " << adjacencies.size() << endl;
 	//Store vertices with odd degrees in new vector
 	vector<int> odds;
 	for (int i = 0; i < n; i++) {
@@ -102,12 +102,12 @@ vector<int> findOdd(vector<int>* adjacencies, int n) {
 	return odds;
 }
 
-vector<int>* match(struct city* G, vector<int>* adjacencies, vector<int> odds, int n) {
-	cout << "adjacencies length in match = " << sizeof(adjacencies) / sizeof(adjacencies[0]) << endl;
+vector<vector<int> > match(struct city* G, vector<vector<int> > adjacencies, vector<int> odds, int n) {
+	cout << "adjacencies length in match = " << adjacencies.size() << endl;
 	int nearest, length;
 
 	//Copy MST into new vector
-	vector<int>* matching = adjacencies;
+	vector<vector<int> > matching = adjacencies;
 
 	//Create vector iterators
 	vector<int>::iterator tmp, first;
@@ -142,7 +142,7 @@ vector<int>* match(struct city* G, vector<int>* adjacencies, vector<int> odds, i
 		odds.erase(first);
 	}
 
-	cout << "matching length = " << sizeof(matching) / sizeof(matching[0]) << endl;
+	cout << "matching length = " << matching.size() << endl;
 /*
 	for (int i = 0; i < n; i++) {
 		cout << "i = " << i << endl;
@@ -153,12 +153,14 @@ vector<int>* match(struct city* G, vector<int>* adjacencies, vector<int> odds, i
 	return matching;
 }
 
-vector<int> euler(vector<int>* matching, int n) {
+vector<int> euler(vector<vector<int> > matching, int n) {
+	cout << "Starting euler" << endl;
 	//Initialize current element to 0
 	int curr = 0;
 	
+	cout << "matching length in euler = " << matching.size() << endl;
 	//Copy matching into tmp
-	vector<int>* tmp = matching;
+	vector<vector<int> > tmp = matching;
 
 	//Declare vector to hold Euler circuit
 	vector<int> circuit;
@@ -166,10 +168,13 @@ vector<int> euler(vector<int>* matching, int n) {
 	//Declare stack vector
 	vector<int> stk;
 
+	cout << "Before while" << endl;
 	//Continue until stack and tmp[curr] are empty
 	while (!stk.empty() || tmp[curr].size() > 0) {
+		cout << "curr = " << curr << endl;
+		cout << "tmp[curr].size() = " << tmp[curr].size() << endl;
 		if (tmp[curr].size() == 0) {
-			//If tmp[curr] is empty...
+			//If node has no more neighbors...
 			//Add curr to circuit
 			circuit.push_back(curr);
 			//Set last from top of stack
@@ -179,24 +184,25 @@ vector<int> euler(vector<int>* matching, int n) {
 			//Set curr to last
 			curr = last;
 		} else {
-			//If tmp[curr] isn't empty...
+			//If node has neighbors...
 			//Add curr to stack
 			stk.push_back(curr);
 			//Set neighbor from the back of tmp[curr]
-			int neighbor = *(tmp[curr].end());
+			int neighbor = tmp[curr].back();
+			cout << "neighbor = " << neighbor << endl;
 			//Erase the back of tmp[curr]
 			tmp[curr].pop_back();
 
 			//Loop through all elements of tmp[neighbor]
-			for (unsigned int i = 0; i < tmp[neighbor].size(); i++) {
+			for (int i = 0; i < tmp[neighbor].size(); i++) {
 				//If current element is curr, erase tmp[neighbor].begin()+1 and break loop
 				if (tmp[neighbor][i] == curr) {
-					tmp[neighbor].erase(tmp[neighbor].begin() + 1);
+					tmp[neighbor].erase(tmp[neighbor].begin() + i);
 					break;
 				}
 			}
 
-			//Set curr equal to neighbor
+			//Update current node from neighbor
 			curr = neighbor;
 		}
 	}
@@ -204,6 +210,7 @@ vector<int> euler(vector<int>* matching, int n) {
 	//Add curr to circuit
 	circuit.push_back(curr);
 
+	cout << "Ending euler" << endl;
 	return circuit;
 }
 
