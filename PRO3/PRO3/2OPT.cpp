@@ -6,24 +6,40 @@ using namespace std;
 TWO_OPT::TWO_OPT(int lengthOfList, struct city * existingTour){
     cityLength = lengthOfList;
     currentTour = existingTour;
-    newTour =  new city[cityLength];
+    newTour = new city[cityLength];
     
     //make a deep current tour into new tour
     for(int i = 0; i < cityLength; ++i){
-        newTour[i] = currentTour[i];
+        newTour[i].cityNumber = currentTour[i].cityNumber;
+        newTour[i].xDimension = currentTour[i].xDimension;
+        newTour[i].yDimension = currentTour[i].yDimension;
+        cout << newTour[i].xDimension << ", " << currentTour[i].xDimension << endl;
+        cout << newTour[i].yDimension << ", " << currentTour[i].yDimension << endl;
+        
+        newTour[i].distancesList = new int[cityLength];
     }
     
+    cout << "Printing tour of new tour: " << endl;
+    printTour(this->newTour, this->cityLength);
+
+//    makeDistances(this->newTour, this->cityLength);
+    
+  
+//    cout << endl;
+//    cout << "Printing list: " << endl;
+//    printMatrix(this->newTour, this->cityLength);
+//    
 };
 
 TWO_OPT::~TWO_OPT(){
-    currentTour = NULL;
-    for(int i = 0; i < cityLength; ++i){
-        delete []newTour[i].distancesList;
-    }
-    
-    delete []newTour;
-    newTour = NULL;
-    
+//    currentTour = NULL;
+//    for(int i = 0; i < cityLength; ++i){
+//        delete []newTour[i].distancesList;
+//    }
+//    
+//    delete []newTour;`
+//    newTour = NULL;
+//    
 };
 
 
@@ -50,15 +66,17 @@ void TWO_OPT::optSwap(int start, int end){
 }
 
 void TWO_OPT::opt2(long& bestDistance, long& latestDistance){
-    long newDistance;
+    long newDistance = 0;
     
     for(int i = 1; i < cityLength - 1; ++i){
         for(int j = i + 1; j < cityLength; ++j){
             optSwap(i, j);
-            currentTour = newTour;
-            newDistance = routeDistance(this->currentTour, cityLength);
+            //currentTour = newTour;
+            newDistance = routeDistance(this->newTour, cityLength);
             if(newDistance < bestDistance){
                 latestDistance = newDistance;
+                cout << "latest distance: " << latestDistance << endl;
+
                 return;
             }
         }

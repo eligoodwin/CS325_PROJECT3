@@ -88,7 +88,7 @@ void InAndOut::saveMatrix(int** coordinatDeData, int lineCount){
 }
 
 
-void InAndOut::saveResult(struct city* tour, int distance, int listLegnth){
+void InAndOut::saveResult(struct city* tour, long distance, int listLegnth){
     
     ofstream outFile;
     outFile.open(OUTFILENAME, ios::out);

@@ -52,8 +52,8 @@ void printTour(struct city* cityData, int cityLength){
 }
 
 //calc route distance 
-int routeDistance(struct city* cityRoute, int cityLength){
-    int tourLength = 0;
+long routeDistance(struct city* cityRoute, int cityLength){
+    long tourLength = 0;
     
     for(int i = 0; i < cityLength; ++i){
         tourLength += cityRoute[i].distancesList[cityRoute[i + 1].cityNumber];
@@ -61,3 +61,15 @@ int routeDistance(struct city* cityRoute, int cityLength){
     
     return tourLength;
 }
+
+void copyDistances(struct city* source, struct city* target, int length){
+    for(int i = 0; i < length; ++i){
+        for(int j = 0; j < length; ++j){
+            cout << target[i].cityNumber << endl;
+            target[i].distancesList[j] = source[target[i].cityNumber].distancesList[j];
+        }
+    }
+    return;
+}
+
+

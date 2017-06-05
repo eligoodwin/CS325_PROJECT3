@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     //handle cmd line argument
     if(argc == 1){
         cout << "No CMD line arugment was provided, using default: \"test.txt\"" << endl;
-        strcpy(fileIn, "tsp_example_1.txt");
+        strcpy(fileIn, "tsp_example_3.txt");
     }
     else{
         strcpy(fileIn, argv[1]);
@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     //int* tour = NULL; //array for solution
     struct city* tempTour = NULL;
     struct city* finTour = NULL;
-    int totalDistance = 0; //total distance of path
+    long totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object
     
@@ -53,14 +53,17 @@ int main(int argc, const char * argv[]) {
     
     //calc the distances
     makeDistances(cityCoordinates, cityLength);
-    printTour(cityCoordinates, cityLength);
+    //printTour(cityCoordinates, cityLength);
     //print matrix
     //printMatrix(cityCoordinates, cityLength);
-    
-    //allocate solution array
+//    
+//    //allocate solution array
 //    int* tour = new int[cityLength];
 //    totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
-    //calc runtime of alog
+//    
+//    cout << totalDistance << endl;
+//    
+//    //calc runtime of alog
     auto start = chrono::high_resolution_clock::now();
     //int* T = NULL;
     //totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
@@ -69,7 +72,11 @@ int main(int argc, const char * argv[]) {
     //start algo
     //begin
     tempTour = nearestNeighbor(cityCoordinates, cityLength);
+    //copyDistances(cityCoordinates, tempTour, cityLength);
+    //printTour(tempTour, cityLength);
     
+    long testDistance = routeDistance(tempTour, cityLength);
+    cout << "current route distance: " << testDistance << endl;
     //init twoOPT
     TWO_OPT twoOptItUp(cityLength, tempTour);
     

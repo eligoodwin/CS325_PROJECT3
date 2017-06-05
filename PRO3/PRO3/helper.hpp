@@ -63,9 +63,10 @@ void printMatrix(struct city* cityData, int cityLength);
  ** Post-Conditions: None
  ** Return: distance of tour
  *********************************************************************/
-int routeDistance(struct city* cityRoute, int cityLength);
+long routeDistance(struct city* cityRoute, int cityLength);
 
 
+void copyDistances(struct city* source, struct city* target, int length);
 
 /*********************************************************************
  ** Function: printTour

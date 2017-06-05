@@ -45,10 +45,11 @@ struct city* nearestNeighbor(struct city* cityData, int numCities){
     location->visited = true;
     
     struct city* nearest = NULL;
-    temp[0].cityNumber = location->cityNumber;
+    //temp[0].cityNumber = location->cityNumber;
+    temp[0] = *location;
     
     std::cout << "Making the nearest neighbors: " << std::endl;
-    for(int i = 0; i < numCities; ++i){
+    for(int i = 1; i < numCities; ++i){
         for(int j = 0; j < numCities; ++j){
             if(!(cityData[j].visited)){
                 if(nearest == NULL){
@@ -61,7 +62,8 @@ struct city* nearestNeighbor(struct city* cityData, int numCities){
             }
         }
         
-        temp[i].cityNumber = nearest->cityNumber;
+        //temp[i].cityNumber = nearest->cityNumber;
+        temp[i] = *nearest;
         std::cout << nearest->cityNumber << ", " << temp[i].cityNumber << std::endl;
         nearest->visited = true;
         location = nearest;
