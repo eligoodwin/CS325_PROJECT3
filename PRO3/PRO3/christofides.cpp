@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int christofides (int* tour, struct city* G, int n) {
+int christofides (long* tour, struct city* G, int n) {
 	//Find the MST
 	cout << "\nStarting Prim's" << endl;
 	vector<int>* T = prim(G, n);
@@ -157,25 +157,27 @@ vector<int> euler(vector<int>* matching) {
 
 	cout << "-init stack" << endl;
 	//Declare stack
-	stack<int> stk;
+	vector<int> stk;
 
 	cout << "-Before while" << endl;
 	//Continue until stack and tmp[curr] are empty
 	while (!stk.empty() || tmp[curr].size() > 0) {
 		if (tmp[curr].size() == 0) {
+			cout << "if" << endl;
 			//If tmp[curr] is empty...
 			//Add curr to circuit
 			circuit.push_back(curr);
 			//Set last from top of stack
-			int last = stk.top();
+			int last = stk.back();
 			//Pop of top of stack
-			stk.pop();
+			stk.pop_back();
 			//Set curr to last
 			curr = last;
 		} else {
+			cout << "else" << endl;
 			//If tmp[curr] isn't empty...
 			//Add curr to stack
-			stk.push(curr);
+			stk.push_back(curr);
 			//Set neighbor from the back of tmp[curr]
 			int neighbor = tmp[curr].back();
 			//Erase the back of tmp[curr]
@@ -202,7 +204,7 @@ vector<int> euler(vector<int>* matching) {
 	return circuit;
 }
 
-int hamilton(int* tour, struct city* G, vector<int> euler) {
+int hamilton(long* tour, struct city* G, vector<int> euler) {
 	//Initialize distance and count to 0
 	int dist = 0;
 	int count = 0;
