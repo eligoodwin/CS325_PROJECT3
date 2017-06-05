@@ -77,6 +77,7 @@ int main(int argc, const char * argv[]) {
 	for (int i = 0; i < cityLength; i++) {
 		cout << "\n" << testTour[i];
 	}
+	cout << "\nDone." << endl;
     
     //init twoOPT
 //    TWO_OPT twoOptItUp(cityLength, tempTour);
@@ -88,7 +89,7 @@ int main(int argc, const char * argv[]) {
     auto elapsed = chrono::high_resolution_clock::now() - start;
     runTime = chrono::duration_cast<std::chrono::milliseconds>(elapsed).count();
     
-    cout << "Total runtime was: " << runTime << " milliseconds." << endl;
+    cout << "\nTotal runtime was: " << runTime << " milliseconds." << endl;
     //save runtime data
     stuff.saveRunTime(runTime);
     //calc final distance
