@@ -71,8 +71,9 @@ int main(int argc, const char * argv[]) {
     //begin
 //    tempTour = nearestNeighbor(cityCoordinates, cityLength);
 	cout << "Beginning Christofides" << endl;
-	long testTour[cityLength];
+	int testTour[cityLength];
 	totalDistance = christofides(testTour, cityCoordinates, cityLength);
+	cout << "Christofides complete" << endl;
 	for (int i = 0; i < cityLength; i++) {
 		cout << "\n" << testTour[i];
 	}
