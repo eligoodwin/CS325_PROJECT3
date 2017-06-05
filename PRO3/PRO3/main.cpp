@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     //handle cmd line argument
     if(argc == 1){
         cout << "No CMD line arugment was provided, using default: \"test.txt\"" << endl;
-        strcpy(fileIn, "test.txt");
+        strcpy(fileIn, "tsp_example_1.txt");
     }
     else{
         strcpy(fileIn, argv[1]);
@@ -53,13 +53,13 @@ int main(int argc, const char * argv[]) {
         
     //calc the distances
     makeDistances(cityCoordinates, cityLength);
-    
+    printTour(cityCoordinates, cityLength);
     //print matrix
-    printMatrix(cityCoordinates, cityLength);
+    //printMatrix(cityCoordinates, cityLength);
     
     //allocate solution array
-    //tour = new int[cityLength];
-    
+//    int* tour = new int[cityLength];
+//    totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
     //calc runtime of alog
     auto start = chrono::high_resolution_clock::now();
     //int* T = NULL;
@@ -68,7 +68,7 @@ int main(int argc, const char * argv[]) {
     
     //start algo
     //begin
-    tempTour = nearestNeibhor(cityCoordinates, cityLength);
+    tempTour = nearestNeighbor(cityCoordinates, cityLength);
     
     //init twoOPT
     TWO_OPT twoOptItUp(cityLength, tempTour);
