@@ -74,10 +74,10 @@ int main(int argc, const char * argv[]) {
 	int testTour[cityLength];
 	totalDistance = christofides(testTour, cityCoordinates, cityLength);
 	cout << "Christofides complete" << endl;
-	for (int i = 0; i < cityLength; i++) {
-		cout << "\n" << testTour[i];
-	}
-	cout << "\nDone." << endl;
+//	for (int i = 0; i < cityLength; i++) {
+//		cout << "\n" << testTour[i];
+//	}
+	cout << "\nDistance = " << totalDistance << endl;
     
     //init twoOPT
 //    TWO_OPT twoOptItUp(cityLength, tempTour);

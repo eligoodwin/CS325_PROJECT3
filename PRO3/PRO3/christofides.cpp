@@ -5,7 +5,6 @@ using namespace std;
 int christofides (int* tour, struct city* G, int n) {
 	//Find the MST
 	vector<vector<int> > T = prim(G, n);
-	cout << "T length = " << T.size() << endl;
 
 	//Find set of vertices with odd degree in T
 	vector<int> O = findOdd(T, n);
@@ -67,8 +66,6 @@ vector<vector<int> > prim(struct city* G, int n) {
 		}
 	}
 
-	cout << "adjacencies length = " << adjacencies.size() << endl;
-
 	return adjacencies;
 }
 
@@ -90,7 +87,6 @@ int minKey(int* key, bool* incl, int n) {
 }
 
 vector<int> findOdd(vector<vector<int> > adjacencies, int n) {
-	cout << "adjacencies length in odd= " << adjacencies.size() << endl;
 	//Store vertices with odd degrees in new vector
 	vector<int> odds;
 	for (int i = 0; i < n; i++) {
@@ -103,7 +99,6 @@ vector<int> findOdd(vector<vector<int> > adjacencies, int n) {
 }
 
 vector<vector<int> > match(struct city* G, vector<vector<int> > adjacencies, vector<int> odds, int n) {
-	cout << "adjacencies length in match = " << adjacencies.size() << endl;
 	int nearest, length;
 
 	//Copy MST into new vector
@@ -142,23 +137,13 @@ vector<vector<int> > match(struct city* G, vector<vector<int> > adjacencies, vec
 		odds.erase(first);
 	}
 
-	cout << "matching length = " << matching.size() << endl;
-/*
-	for (int i = 0; i < n; i++) {
-		cout << "i = " << i << endl;
-		cout << "size = " << matching[i].size() << endl;
-	}
-*/
-
 	return matching;
 }
 
 vector<int> euler(vector<vector<int> > matching, int n) {
-	cout << "Starting euler" << endl;
 	//Initialize current element to 0
 	int curr = 0;
 	
-	cout << "matching length in euler = " << matching.size() << endl;
 	//Copy matching into tmp
 	vector<vector<int> > tmp = matching;
 
@@ -168,11 +153,8 @@ vector<int> euler(vector<vector<int> > matching, int n) {
 	//Declare stack vector
 	vector<int> stk;
 
-	cout << "Before while" << endl;
 	//Continue until stack and tmp[curr] are empty
 	while (!stk.empty() || tmp[curr].size() > 0) {
-		cout << "curr = " << curr << endl;
-		cout << "tmp[curr].size() = " << tmp[curr].size() << endl;
 		if (tmp[curr].size() == 0) {
 			//If node has no more neighbors...
 			//Add curr to circuit
@@ -189,7 +171,6 @@ vector<int> euler(vector<vector<int> > matching, int n) {
 			stk.push_back(curr);
 			//Set neighbor from the back of tmp[curr]
 			int neighbor = tmp[curr].back();
-			cout << "neighbor = " << neighbor << endl;
 			//Erase the back of tmp[curr]
 			tmp[curr].pop_back();
 
@@ -210,7 +191,6 @@ vector<int> euler(vector<vector<int> > matching, int n) {
 	//Add curr to circuit
 	circuit.push_back(curr);
 
-	cout << "Ending euler" << endl;
 	return circuit;
 }
 
@@ -237,7 +217,6 @@ int hamilton(int* tour, struct city* G, vector<int> euler) {
 			//If next city hasn't been visited...
 			//Add distance to next city to dist
 			dist += G[*curr].distancesList[*next];
-			cout << "preliminary dist = " << dist << endl;
 			//Update curr
 			curr = next;
 			//Visit curr city and add cityNumber to tour
@@ -256,7 +235,6 @@ int hamilton(int* tour, struct city* G, vector<int> euler) {
 
 	//Add distance to final city to curr
 	dist += G[*curr].distancesList[*next];
-	cout << "final dist = " << dist << endl;
 
 	return dist;
 }
