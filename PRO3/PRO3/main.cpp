@@ -14,6 +14,7 @@
 #include "helper.hpp"
 #include "cityData.hpp"
 #include "nearestNeighbor.hpp"
+#include "christofides.hpp"
 #include "2OPT.hpp"
 
 using namespace std;
@@ -68,13 +69,19 @@ int main(int argc, const char * argv[]) {
     
     //start algo
     //begin
-    tempTour = nearestNeighbor(cityCoordinates, cityLength);
+//    tempTour = nearestNeighbor(cityCoordinates, cityLength);
+	cout << "Beginning Christofides" << endl;
+	int testTour[cityLength];
+	totalDistance = christofides(testTour, cityCoordinates, cityLength);
+	for (int i = 0; i < cityLength; i++) {
+		cout << "\n" << testTour[i];
+	}
     
     //init twoOPT
-    TWO_OPT twoOptItUp(cityLength, tempTour);
+//    TWO_OPT twoOptItUp(cityLength, tempTour);
     
     //start algo
-    finTour = twoOptItUp.OPT2ALGO();
+//    finTour = twoOptItUp.OPT2ALGO();
     
     //final runtime
     auto elapsed = chrono::high_resolution_clock::now() - start;
@@ -84,7 +91,7 @@ int main(int argc, const char * argv[]) {
     //save runtime data
     stuff.saveRunTime(runTime);
     //calc final distance
-    totalDistance  = routeDistance(finTour, cityLength);
+//    totalDistance  = routeDistance(finTour, cityLength);
     //save results
     stuff.saveResult(finTour, totalDistance, cityLength);
     

@@ -1,6 +1,7 @@
 #ifndef CHRISTOFIDES_HPP
 #define CHRISTOFIDES_HPP
 
+#include <iostream>
 #include <climits>
 #include <vector>
 #include <stack>
