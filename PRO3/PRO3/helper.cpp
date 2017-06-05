@@ -44,9 +44,9 @@ void printMatrix(struct city* cityData, int cityLength){
 //print tour if need be
 void printTour(struct city* cityData, int cityLength){
     for(int i = 0; i < cityLength; ++i){
-        cout << cityData[i].cityNumber << ", " << endl;
+        cout << cityData[i].cityNumber << ", ";
     }
-    
+    cout << endl;
     
     return;
 }

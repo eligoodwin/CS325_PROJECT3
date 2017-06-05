@@ -54,6 +54,7 @@ struct city* nearestNeighbor(struct city* cityData, int numCities){
                 if(nearest == NULL){
                     nearest = &cityData[j];
                 }
+                
                 else if(location->distancesList[j] < location->distancesList[nearest->cityNumber]){
                     nearest = &cityData[j];
                 }
