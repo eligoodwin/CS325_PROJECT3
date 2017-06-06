@@ -12,6 +12,8 @@
 		637950A01EE0FEAF00F8BD1E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6379509F1EE0FEAF00F8BD1E /* main.cpp */; };
 		637950A81EE0FEDB00F8BD1E /* InAndOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */; };
 		637950AC1EE0FFFD00F8BD1E /* helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 637950AA1EE0FFFD00F8BD1E /* helper.cpp */; };
+		63ACD0881EE65ACD00A80664 /* twoOptv2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63ACD0861EE65ACD00A80664 /* twoOptv2.cpp */; };
+		63ACD08B1EE662D100A80664 /* christofides.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63ACD0891EE662D100A80664 /* christofides.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +40,10 @@
 		637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InAndOut.hpp; sourceTree = "<group>"; };
 		637950AA1EE0FFFD00F8BD1E /* helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helper.cpp; sourceTree = "<group>"; };
 		637950AB1EE0FFFD00F8BD1E /* helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = helper.hpp; sourceTree = "<group>"; };
+		63ACD0861EE65ACD00A80664 /* twoOptv2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twoOptv2.cpp; sourceTree = "<group>"; };
+		63ACD0871EE65ACD00A80664 /* twoOptv2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = twoOptv2.hpp; sourceTree = "<group>"; };
+		63ACD0891EE662D100A80664 /* christofides.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = christofides.cpp; sourceTree = "<group>"; };
+		63ACD08A1EE662D100A80664 /* christofides.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = christofides.hpp; sourceTree = "<group>"; };
 		63FAAFC41EE2525B00D48A01 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,8 +80,12 @@
 				63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */,
 				63342BFF1EE47B8B0052CD91 /* 2OPT.hpp */,
 				63342BFD1EE4639C0052CD91 /* cityData.hpp */,
+				63ACD0861EE65ACD00A80664 /* twoOptv2.cpp */,
+				63ACD0871EE65ACD00A80664 /* twoOptv2.hpp */,
 				637950AA1EE0FFFD00F8BD1E /* helper.cpp */,
 				637950AB1EE0FFFD00F8BD1E /* helper.hpp */,
+				63ACD0891EE662D100A80664 /* christofides.cpp */,
+				63ACD08A1EE662D100A80664 /* christofides.hpp */,
 				637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */,
 				637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */,
 				6379509F1EE0FEAF00F8BD1E /* main.cpp */,
@@ -145,8 +155,10 @@
 			files = (
 				637950A01EE0FEAF00F8BD1E /* main.cpp in Sources */,
 				637950A81EE0FEDB00F8BD1E /* InAndOut.cpp in Sources */,
+				63ACD08B1EE662D100A80664 /* christofides.cpp in Sources */,
 				63342C031EE4D4680052CD91 /* nearestNeighbor.cpp in Sources */,
 				63342C001EE47B8B0052CD91 /* 2OPT.cpp in Sources */,
+				63ACD0881EE65ACD00A80664 /* twoOptv2.cpp in Sources */,
 				637950AC1EE0FFFD00F8BD1E /* helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

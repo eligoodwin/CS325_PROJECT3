@@ -88,7 +88,7 @@ void InAndOut::saveMatrix(int** coordinatDeData, int lineCount){
 }
 
 
-void InAndOut::saveResult(struct city* tour, int distance, int listLength){
+void InAndOut::saveResult(struct city* tour, long distance, int listLength){
     
     ofstream outFile;
     outFile.open(OUTFILENAME, ios::out);
@@ -107,7 +107,7 @@ void InAndOut::saveResult(struct city* tour, int distance, int listLength){
     return;
 }
 
-void InAndOut::saveResult(int* tour, int distance, int listLength) {
+void InAndOut::saveResult(int* tour, long distance, int listLength) {
 
     ofstream outFile;
     outFile.open(OUTFILENAME, ios::out);
@@ -125,6 +125,25 @@ void InAndOut::saveResult(int* tour, int distance, int listLength) {
     return;
 }
 
+void InAndOut::saveResult(struct city** tour, long distance, int listLegnth){
+    
+    ofstream outFile;
+    outFile.open(OUTFILENAME, ios::out);
+    
+    if(outFile.is_open()){
+        outFile << distance << endl;
+        for(int i = 0; i < listLegnth; ++i){
+            outFile << tour[i]->cityNumber << endl;
+        }
+    }
+    
+    outFile.close();
+    outFile.clear();
+    
+    
+    return;
+}
+
 void InAndOut::saveRunTime(double runtime){
     ofstream outFile;
     
@@ -138,5 +157,7 @@ void InAndOut::saveRunTime(double runtime){
     
     return;
 }
+
+
 
 

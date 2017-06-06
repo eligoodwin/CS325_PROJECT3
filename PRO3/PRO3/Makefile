@@ -1,7 +1,7 @@
 CXX = g++ -std=c++11 -c
 CFLAGS = -Wall
-SOURCES = helper.o 2OPT.o nearestNeighbor.o InAndOut.o christofides.o
-HEADERS = helper.hpp 2OPT.hpp nearestNeighbor.hpp InAndOut.hpp cityData.hpp christofides.hpp
+SOURCES = helper.o 2OPT.o nearestNeighbor.o InAndOut.o christofides.o twoOptv2.o
+HEADERS = helper.hpp 2OPT.hpp nearestNeighbor.hpp InAndOut.hpp cityData.hpp christofides.hpp twoOptv2.hpp
 
 main: ${SOURCES} ${HEADERS}
 	g++ -std=c++11 -o main main.cpp ${SOURCES} -Wall -lm
@@ -20,6 +20,8 @@ InAndOut.o: InAndOut.cpp InAndOut.hpp cityData.hpp
 
 christofides.o: christofides.cpp christofides.hpp cityData.hpp
 	${CXX} christofides.cpp ${CFLAGS}
+twoOptv2.o: twoOptv2.cpp twoOptv2.cpp helper.cpp
+	${CXX} twoOptv2.cpp ${FLAGS}
 
 clean:
-	rm -f *.o main results.txt runtime.txt
+	rm -f *.o main

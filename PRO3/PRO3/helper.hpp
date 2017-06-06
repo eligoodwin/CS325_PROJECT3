@@ -65,7 +65,17 @@ void printMatrix(struct city* cityData, int cityLength);
  *********************************************************************/
 int routeDistance(struct city* cityRoute, int cityLength);
 
-
+/*********************************************************************
+ ** Function: routeDistance
+ ** Description: calcs the distance of a route given a route
+ ** Parameters:
+ **     cityRoute: contains a route between cities
+ **     cityLength: legnth of the struct city array
+ ** Pre-Conditions: none
+ ** Post-Conditions: None
+ ** Return: distance of tour
+ *********************************************************************/
+long routeDistance(struct city** cityRoute, int cityLength);
 
 /*********************************************************************
  ** Function: printTour
@@ -77,5 +87,8 @@ int routeDistance(struct city* cityRoute, int cityLength);
  ** Post-Conditions: None
  ** Return: none
  *********************************************************************/
-void printTour(struct city* cityRoute, int cityLength);
+void printTour(struct city** cityRoute, int cityLength);
+
+struct city** convertIt(int tourArray[], struct city* cityData, struct city** cityTour, int cityLength);
+
 #endif /* helper_hpp */

@@ -64,8 +64,10 @@ public:
      ** Post-Conditions: None
      ** Return: none
      *********************************************************************/
-    void saveResult(struct city* tour, int distance, int listLength);
-    void saveResult(int* tour, int distance, int listLength);
+    void saveResult(struct city* tour, long distance, int listLength);
+    void saveResult(int* tour, long distance, int listLength);
+    void saveResult(struct city** tour, long distance, int listLegnth);
+
 
     /*********************************************************************
      ** Function: runtime

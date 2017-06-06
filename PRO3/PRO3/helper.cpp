@@ -42,9 +42,9 @@ void printMatrix(struct city* cityData, int cityLength){
 
 
 //print tour if need be
-void printTour(struct city* cityData, int cityLength){
+void printTour(struct city** cityData, int cityLength){
     for(int i = 0; i < cityLength; ++i){
-        cout << cityData[i].cityNumber << ", ";
+        cout << cityData[i]->cityNumber << ", ";
     }
     cout << endl;
     
@@ -60,4 +60,31 @@ int routeDistance(struct city* cityRoute, int cityLength){
     }
     
     return tourLength;
+}
+
+
+long routeDistance(struct city** cityRoute, int cityLength){
+    long tourLength = 0;
+    
+    
+    for(int i = 0; i < cityLength - 1; ++i){
+        //if(i + 1 != cityLength)
+        tourLength += cityRoute[i]->distancesList[cityRoute[i + 1]->cityNumber];
+    }
+    
+    //complete the circuit
+    tourLength += cityRoute[cityLength - 1]->distancesList[0];
+    return tourLength;
+}
+
+struct city** convertIt(int tourArrray[], struct city* cityData, struct city** tempArray, int cityLength){
+    city* holder = NULL;
+    for(int i = 0; i < cityLength; ++i){
+        holder = &cityData[cityData[tourArrray[i]].cityNumber];
+        //cout << holder->cityNumber << " ";
+        tempArray[i] = holder;
+        //cout << tempArray[i]->cityNumber << " " ;
+    }
+    
+    return tempArray;
 }

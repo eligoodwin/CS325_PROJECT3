@@ -16,6 +16,7 @@
 #include "nearestNeighbor.hpp"
 #include "christofides.hpp"
 #include "2OPT.hpp"
+#include "twoOptv2.hpp"
 
 using namespace std;
 int main(int argc, const char * argv[]) {
@@ -31,15 +32,14 @@ int main(int argc, const char * argv[]) {
     }
     
     //int* tour = NULL; //array for solution
-    struct city* tempTour = NULL;
-    struct city* finTour = NULL;
+    struct city** finTour = NULL;
     int* T = NULL;
-    int totalDistance = 0; //total distance of path
+    long totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object
     
     int cityLength = 0; //stores length of input
-    //int **cityDistances = NULL; //stores calculated distances
+    
     
     cityLength = stuff.getLength(fileIn); //what is the length/number of cities we are entering?
     //allocate the struct storing city data
@@ -55,9 +55,6 @@ int main(int argc, const char * argv[]) {
     
     //calc the distances
     makeDistances(cityCoordinates, cityLength);
-    printTour(cityCoordinates, cityLength);
-    //print matrix
-    //printMatrix(cityCoordinates, cityLength);
     
     //calc runtime of alog
     auto start = chrono::high_resolution_clock::now();
@@ -72,11 +69,21 @@ int main(int argc, const char * argv[]) {
                 stuff.saveResult(T, totalDistance, cityLength);
                 break;
             case 2: {
-                tempTour = nearestNeighbor(cityCoordinates, cityLength);
+                
+                T = new int[cityLength];
+                
+                
+                //totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
+                totalDistance = christofides(T, cityCoordinates, cityLength);
+                struct city** cityTour = new city*[cityLength];
+                
+                convertIt(T, cityCoordinates, cityTour, cityLength);
+
                 //Init twoOPT
-                TWO_OPT twoOptItUp(cityLength, tempTour);
+                TWO_OPTv2 twoOptItUp(cityLength, cityTour);
                 //Run 2OPT
-                finTour = twoOptItUp.OPT2ALGO();
+                finTour = twoOptItUp.twoOptAlgo2();
+                //printTour(finTour, cityLength);
                 totalDistance  = routeDistance(finTour, cityLength);
                 //save results
                 stuff.saveResult(finTour, totalDistance, cityLength);
@@ -114,12 +121,12 @@ int main(int argc, const char * argv[]) {
     
     cout << "\nTotal runtime was: " << runTime << " milliseconds." << endl;
     //save runtime data
-    stuff.saveRunTime(runTime);
+//    stuff.saveRunTime(runTime);
     
     //clean everything up
     
     delete[] T;
-    delete []tempTour;
+//    delete []cityTour;
     delete []cityCoordinates;
     
     return 0;
