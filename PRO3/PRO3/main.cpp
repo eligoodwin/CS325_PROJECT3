@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     //handle cmd line argument
     if(argc == 1){
         cout << "No CMD line arugment was provided, using default: \"test.txt\"" << endl;
-        strcpy(fileIn, "test-input-1.txt");
+        strcpy(fileIn, "test-input-4.txt");
     }
     else{
         strcpy(fileIn, argv[1]);
@@ -58,12 +58,6 @@ int main(int argc, const char * argv[]) {
     //get distance of greedy tour
     totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
     cout << "inital distance: " << totalDistance << endl;
-    for(int i = 0; i < cityLength; ++i){
-        cout << T[i] << " ";
-        
-    }
-    
-    cout << endl;
     
     //start the clock for the algo
     auto start = chrono::high_resolution_clock::now();
@@ -75,9 +69,6 @@ int main(int argc, const char * argv[]) {
     convertIt(T, cityCoordinates, cityTour, cityLength);
    // printMatrix(cityTour, cityLength);
     
-    totalDistance = routeDistance(cityTour, cityLength);
-    stuff.saveResult(cityTour, totalDistance, cityLength);
-    
     //init twoOPT
     //TWO_OPT twoOptItUp(cityLength, cityTour);
     TWO_OPTv2 op2Algo(cityLength, cityTour);
@@ -86,7 +77,6 @@ int main(int argc, const char * argv[]) {
     
     finTour = op2Algo.twoOptAlgo2();
     cout << "final tour: " << endl;
-    printTour(finTour, cityLength);
     
     //final runtime
     auto elapsed = chrono::high_resolution_clock::now() - start;
@@ -100,7 +90,6 @@ int main(int argc, const char * argv[]) {
     //save results
     stuff.saveResult(finTour, totalDistance, cityLength);
     cout << "final distance: " << totalDistance <<endl;
-    printTour(finTour, cityLength);
     
     cout << endl;
     finTour = NULL;

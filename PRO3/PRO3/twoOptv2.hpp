@@ -23,7 +23,6 @@
 
 #include <stdio.h>
 #include <climits>
-#include "2OPT.hpp"
 #include "cityData.hpp"
 #include "helper.hpp"
 

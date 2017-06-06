@@ -17,17 +17,17 @@ TWO_OPTv2::~TWO_OPTv2(){
 void TWO_OPTv2::twoOptSwap(const int& start, const int& end){
 	int i;
 	int currIdx = 0;
-	for(i = 0; i < start; ++i){
+	for(i = 0; i <= start; ++i){
 		newTour[i] = currentTour[i];
 		++currIdx;
 	}
 
-	for(i = end; i >= start; --i){
+	for(i = end; i > start; --i){
 		newTour[currIdx] = currentTour[i];
 		++currIdx;
 	}
 
-	for(i = end + 1; i < cityLength; ++i){
+	for(i = end + 1; i < cityLength + 1 ; ++i){
 		newTour[i] = currentTour[i];
 	}
 
@@ -49,11 +49,11 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
 				//perform the swap to eliminate crossses
 				twoOptSwap(i, j);
 				//is the new route shourter? let's find out
-				newDistance = routeDistance(newTour, cityLength);
+				newDistance = routeDistance(this->newTour, this->cityLength);
 				//if the new distance is shorter than the vest recorded distance, save the new route
 				if(newDistance < currentDistance){
                     for(int k = 0; k < cityLength; ++k){
-                        currentTour[k] = newTour[k];
+                        this->currentTour[k] = this->newTour[k];
                     }
                     //cout << "newest tour: " << endl;
                     //printTour(newTour, cityLength);
