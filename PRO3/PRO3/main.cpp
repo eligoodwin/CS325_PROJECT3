@@ -33,6 +33,7 @@ int main(int argc, const char * argv[]) {
     //int* tour = NULL; //array for solution
     struct city* tempTour = NULL;
     struct city* finTour = NULL;
+    int* T = NULL;
     int totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object
@@ -58,48 +59,66 @@ int main(int argc, const char * argv[]) {
     //print matrix
     //printMatrix(cityCoordinates, cityLength);
     
-    //allocate solution array
-//    int* tour = new int[cityLength];
-//    totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
     //calc runtime of alog
     auto start = chrono::high_resolution_clock::now();
-    //int* T = NULL;
-    //totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
     
+    //Start algo
+    if (argc > 2) {
+        switch (atoi(argv[2])) {
+            case 1:
+                T = new int[cityLength];
+                totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
+                //save results
+                stuff.saveResult(T, totalDistance, cityLength);
+                break;
+            case 2: {
+                tempTour = nearestNeighbor(cityCoordinates, cityLength);
+                //Init twoOPT
+                TWO_OPT twoOptItUp(cityLength, tempTour);
+                //Run 2OPT
+                finTour = twoOptItUp.OPT2ALGO();
+                totalDistance  = routeDistance(finTour, cityLength);
+                //save results
+                stuff.saveResult(finTour, totalDistance, cityLength);
+                break;
+            }
+            case 3:
+                cout << "Beginning Christofides" << endl;
+                T = new int[cityLength];
+                totalDistance = christofides(T, cityCoordinates, cityLength);
+                cout << "Christofides complete" << endl;
+                //save results
+                stuff.saveResult(T, totalDistance, cityLength);
+                break;
+            default:
+                T = new int[cityLength];
+                totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
+                //save results
+                stuff.saveResult(T, totalDistance, cityLength);
+                break;
+        }
+    }
+    else {
+        T = new int[cityLength];
+        totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
+        //save results
+        stuff.saveResult(T, totalDistance, cityLength);
+    }
+
+    auto elapsed = chrono::high_resolution_clock::now() - start;
     
-    //start algo
-    //begin
-//    tempTour = nearestNeighbor(cityCoordinates, cityLength);
-	cout << "Beginning Christofides" << endl;
-	int testTour[cityLength];
-	totalDistance = christofides(testTour, cityCoordinates, cityLength);
-	cout << "Christofides complete" << endl;
-//	for (int i = 0; i < cityLength; i++) {
-//		cout << "\n" << testTour[i];
-//	}
 	cout << "\nDistance = " << totalDistance << endl;
     
-    //init twoOPT
-//    TWO_OPT twoOptItUp(cityLength, tempTour);
-    
-    //start algo
-//    finTour = twoOptItUp.OPT2ALGO();
-    
     //final runtime
-    auto elapsed = chrono::high_resolution_clock::now() - start;
     runTime = chrono::duration_cast<std::chrono::milliseconds>(elapsed).count();
     
     cout << "\nTotal runtime was: " << runTime << " milliseconds." << endl;
     //save runtime data
     stuff.saveRunTime(runTime);
-    //calc final distance
-//    totalDistance  = routeDistance(finTour, cityLength);
-    //save results
-    stuff.saveResult(finTour, totalDistance, cityLength);
     
     //clean everything up
-    //delete []solution;
     
+    delete[] T;
     delete []tempTour;
     delete []cityCoordinates;
     

@@ -22,4 +22,4 @@ christofides.o: christofides.cpp christofides.hpp cityData.hpp
 	${CXX} christofides.cpp ${CFLAGS}
 
 clean:
-	rm -f *.o main
+	rm -f *.o main results.txt runtime.txt

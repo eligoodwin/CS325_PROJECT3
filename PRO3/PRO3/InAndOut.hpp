@@ -65,6 +65,7 @@ public:
      ** Return: none
      *********************************************************************/
     void saveResult(struct city* tour, int distance, int listLength);
+    void saveResult(int* tour, int distance, int listLength);
 
     /*********************************************************************
      ** Function: runtime
