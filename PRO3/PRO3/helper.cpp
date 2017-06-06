@@ -83,7 +83,8 @@ long routeDistance(struct city** cityRoute, int cityLength){
     }
     
     //complete the circuit
-    //tourLength += cityRoute[cityLength - 1]->distancesList[0];
+    
+    tourLength += cityRoute[cityLength - 1]->distancesList[0];
     return tourLength;
 }
 

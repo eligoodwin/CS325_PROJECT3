@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6305D45D1EE637D10044E8B0 /* twoOptv2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6305D45B1EE637D10044E8B0 /* twoOptv2.cpp */; };
 		63342C001EE47B8B0052CD91 /* 2OPT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */; };
 		63342C031EE4D4680052CD91 /* nearestNeighbor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63342C011EE4D4680052CD91 /* nearestNeighbor.cpp */; };
 		63342C061EE4F3DA0052CD91 /* christofides.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63342C041EE4F3DA0052CD91 /* christofides.cpp */; };
@@ -28,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6305D45B1EE637D10044E8B0 /* twoOptv2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twoOptv2.cpp; sourceTree = "<group>"; };
+		6305D45C1EE637D10044E8B0 /* twoOptv2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = twoOptv2.hpp; sourceTree = "<group>"; };
 		63342BFD1EE4639C0052CD91 /* cityData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cityData.hpp; sourceTree = "<group>"; };
 		63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 2OPT.cpp; sourceTree = "<group>"; };
 		63342BFF1EE47B8B0052CD91 /* 2OPT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = 2OPT.hpp; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				63342BFE1EE47B8B0052CD91 /* 2OPT.cpp */,
 				63342BFF1EE47B8B0052CD91 /* 2OPT.hpp */,
 				63342BFD1EE4639C0052CD91 /* cityData.hpp */,
+				6305D45B1EE637D10044E8B0 /* twoOptv2.cpp */,
+				6305D45C1EE637D10044E8B0 /* twoOptv2.hpp */,
 				637950AA1EE0FFFD00F8BD1E /* helper.cpp */,
 				637950AB1EE0FFFD00F8BD1E /* helper.hpp */,
 				63342C041EE4F3DA0052CD91 /* christofides.cpp */,
@@ -165,6 +170,7 @@
 				63342C061EE4F3DA0052CD91 /* christofides.cpp in Sources */,
 				637950A01EE0FEAF00F8BD1E /* main.cpp in Sources */,
 				637950A81EE0FEDB00F8BD1E /* InAndOut.cpp in Sources */,
+				6305D45D1EE637D10044E8B0 /* twoOptv2.cpp in Sources */,
 				63342C031EE4D4680052CD91 /* nearestNeighbor.cpp in Sources */,
 				63342C001EE47B8B0052CD91 /* 2OPT.cpp in Sources */,
 				637950AC1EE0FFFD00F8BD1E /* helper.cpp in Sources */,

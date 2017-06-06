@@ -15,7 +15,7 @@
 #include "cityData.hpp"
 #include "nearestNeighbor.hpp"
 #include "2OPT.hpp"
-
+#include "twoOptv2.hpp"
 using namespace std;
 int main(int argc, const char * argv[]) {
     char fileIn[20]; //store file name
@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     //handle cmd line argument
     if(argc == 1){
         cout << "No CMD line arugment was provided, using default: \"test.txt\"" << endl;
-        strcpy(fileIn, "test-input-3.txt");
+        strcpy(fileIn, "test-input-1.txt");
     }
     else{
         strcpy(fileIn, argv[1]);
@@ -75,11 +75,18 @@ int main(int argc, const char * argv[]) {
     convertIt(T, cityCoordinates, cityTour, cityLength);
    // printMatrix(cityTour, cityLength);
     
-    //init twoOPT
-    TWO_OPT twoOptItUp(cityLength, cityTour);
+    totalDistance = routeDistance(cityTour, cityLength);
+    stuff.saveResult(cityTour, totalDistance, cityLength);
     
+    //init twoOPT
+    //TWO_OPT twoOptItUp(cityLength, cityTour);
+    TWO_OPTv2 op2Algo(cityLength, cityTour);
     //start algo
-    finTour = twoOptItUp.OPT2ALGO();
+    //finTour = twoOptItUp.OPT2ALGO();
+    
+    finTour = op2Algo.twoOptAlgo2();
+    cout << "final tour: " << endl;
+    printTour(finTour, cityLength);
     
     //final runtime
     auto elapsed = chrono::high_resolution_clock::now() - start;
