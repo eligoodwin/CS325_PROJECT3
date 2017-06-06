@@ -7,6 +7,6 @@
 
 int nearestNeighbor (int* T, struct city* G, int numCities);
 
-struct city* nearestNeighbor(struct city* cityData, int numCities);
-
+struct city** nearestNeighbor(struct city* cityData, int numCities);
+struct city** greedier(struct city* cityData, struct city** greedyResult, int cityLength);
 #endif

@@ -50,7 +50,7 @@ void makeDistances(struct city* cityList, int cityLegnth);
  ** Post-Conditions: none
  ** Return: none
  *********************************************************************/
-void printMatrix(struct city* cityData, int cityLength);
+void printMatrix(struct city** cityData, int cityLength);
 
 
 /*********************************************************************
@@ -66,8 +66,20 @@ void printMatrix(struct city* cityData, int cityLength);
 long routeDistance(struct city* cityRoute, int cityLength);
 
 
-void copyDistances(struct city* source, struct city* target, int length);
+/*********************************************************************
+ ** Function: routeDistance
+ ** Description: calcs the distance of a route given a route
+ ** Parameters:
+ **     cityRoute: contains a route between cities
+ **     cityLength: legnth of the struct city array
+ ** Pre-Conditions: none
+ ** Post-Conditions: None
+ ** Return: distance of tour
+ *********************************************************************/
+long routeDistance(struct city** cityRoute, int cityLength);
 
+
+struct city** convertIt(int tourArray[], struct city* cityData, struct city** cityTour, int cityLength);
 /*********************************************************************
  ** Function: printTour
  ** Description: prints the tour to screen
@@ -79,4 +91,7 @@ void copyDistances(struct city* source, struct city* target, int length);
  ** Return: none
  *********************************************************************/
 void printTour(struct city* cityRoute, int cityLength);
+void printTour(struct city** cityData, int cityLength);
+
+
 #endif /* helper_hpp */

@@ -9,8 +9,10 @@
 #include "InAndOut.hpp"
 using namespace std;
 void InAndOut::readData(struct city* cityData, char fileName[]){
-    string numString; //stores string which is converted into numericals
-    ifstream myFile; //file stream object
+    int listLength = 0;
+    string numString;
+    
+    ifstream myFile;
     
     myFile.open(fileName);
     cout << "Opening file: " << fileName << endl;
@@ -88,7 +90,7 @@ void InAndOut::saveMatrix(int** coordinatDeData, int lineCount){
 }
 
 
-void InAndOut::saveResult(struct city** tour, long distance, int listLegnth){
+void InAndOut::saveResult(int* results, int distance, int listLegnth){
     
     ofstream outFile;
     outFile.open(OUTFILENAME, ios::out);
@@ -96,8 +98,9 @@ void InAndOut::saveResult(struct city** tour, long distance, int listLegnth){
     if(outFile.is_open()){
         outFile << distance << endl;
         for(int i = 0; i < listLegnth; ++i){
-            outFile << tour[i]->cityNumber << endl;
+            outFile << results[i] << endl;
         }
+        
     }
     
     outFile.close();
@@ -106,20 +109,4 @@ void InAndOut::saveResult(struct city** tour, long distance, int listLegnth){
     
     return;
 }
-
-
-void InAndOut::saveRunTime(double runtime){
-    ofstream outFile;
-    
-    outFile.open(RUNTIMERESULT, ios::out);
-    if(outFile.is_open()){
-        outFile << runtime << endl;
-    }
-    
-    outFile.close();
-    outFile.clear();
-    
-    return;
-}
-
 

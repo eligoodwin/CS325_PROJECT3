@@ -41,6 +41,13 @@
 		637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InAndOut.hpp; sourceTree = "<group>"; };
 		637950AA1EE0FFFD00F8BD1E /* helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helper.cpp; sourceTree = "<group>"; };
 		637950AB1EE0FFFD00F8BD1E /* helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = helper.hpp; sourceTree = "<group>"; };
+		638C262F1EE5EE24009D9075 /* test-input-1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-1.txt"; sourceTree = "<group>"; };
+		638C26301EE5EE24009D9075 /* test-input-2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-2.txt"; sourceTree = "<group>"; };
+		638C26311EE5EE24009D9075 /* test-input-3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-3.txt"; sourceTree = "<group>"; };
+		638C26321EE5EE24009D9075 /* test-input-4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-4.txt"; sourceTree = "<group>"; };
+		638C26331EE5EE24009D9075 /* test-input-5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-5.txt"; sourceTree = "<group>"; };
+		638C26341EE5EE24009D9075 /* test-input-6.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-6.txt"; sourceTree = "<group>"; };
+		638C26351EE5EE24009D9075 /* test-input-7.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-input-7.txt"; sourceTree = "<group>"; };
 		63FAAFC41EE2525B00D48A01 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +87,13 @@
 				637950AA1EE0FFFD00F8BD1E /* helper.cpp */,
 				637950AB1EE0FFFD00F8BD1E /* helper.hpp */,
 				63342C041EE4F3DA0052CD91 /* christofides.cpp */,
+				638C262F1EE5EE24009D9075 /* test-input-1.txt */,
+				638C26301EE5EE24009D9075 /* test-input-2.txt */,
+				638C26311EE5EE24009D9075 /* test-input-3.txt */,
+				638C26321EE5EE24009D9075 /* test-input-4.txt */,
+				638C26331EE5EE24009D9075 /* test-input-5.txt */,
+				638C26341EE5EE24009D9075 /* test-input-6.txt */,
+				638C26351EE5EE24009D9075 /* test-input-7.txt */,
 				63342C051EE4F3DA0052CD91 /* christofides.hpp */,
 				637950A61EE0FEDB00F8BD1E /* InAndOut.cpp */,
 				637950A71EE0FEDB00F8BD1E /* InAndOut.hpp */,

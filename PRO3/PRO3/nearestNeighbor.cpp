@@ -31,7 +31,12 @@ int nearestNeighbor (int* T, struct city* G, int numCities) {
 		location = nearest;
 		nearest = NULL;
 	}
-
+    
+//    for(int i = 0; i < numCities; ++i){
+//        std::cout << T[i] << ", ";
+//    }
+    
+    std::cout << std::endl;
 	/*Add the distance between the last city on the tour and the first to
 	complete the circuit*/
 	distance += location->distancesList[0];
@@ -39,14 +44,14 @@ int nearestNeighbor (int* T, struct city* G, int numCities) {
 }
 
 
-struct city* nearestNeighbor(struct city* cityData, int numCities){
-    struct city* temp = new city[numCities];
+struct city** nearestNeighbor(struct city* cityData, int numCities){
+    struct city** temp = NULL;
     struct city* location = &cityData[0];
     location->visited = true;
     
     struct city* nearest = NULL;
     //temp[0].cityNumber = location->cityNumber;
-    temp[0] = *location;
+    temp[0] = location;
     
     std::cout << "Making the nearest neighbors: " << std::endl;
     for(int i = 1; i < numCities; ++i){
@@ -62,13 +67,21 @@ struct city* nearestNeighbor(struct city* cityData, int numCities){
             }
         }
         
-        //temp[i].cityNumber = nearest->cityNumber;
-        temp[i] = *nearest;
-        std::cout << nearest->cityNumber << ", " << temp[i].cityNumber << std::endl;
+        temp[i] = nearest;
         nearest->visited = true;
         location = nearest;
         nearest = NULL;
     }
     
     return temp;
+}
+
+
+struct city** greedier(struct city* cityData, struct city** greedyResult, int cityLength){
+    
+    
+    
+    
+    
+    return greedyResult;
 }

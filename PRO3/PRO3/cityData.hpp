@@ -26,10 +26,6 @@ struct city{
         distancesList = NULL;
         visited = false;
     }
-    //destructor
-    ~city(){
-        delete []distancesList;
-    }
 };
 
 

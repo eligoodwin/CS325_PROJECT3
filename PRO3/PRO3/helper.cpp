@@ -27,12 +27,12 @@ void makeDistances(struct city* cityData, int cityLength){
 }
 
 //print matrix if need be
-void printMatrix(struct city* cityData, int cityLength){
+void printMatrix(struct city** cityData, int cityLength){
     cout << "\nDistances for the complete graph: " << endl;
     //print results
     for(int i = 0; i < cityLength; ++i){
         for(int j = 0; j < cityLength; ++j){
-            cout << cityData[i].distancesList[j] << " ";
+            cout << cityData[i]->distancesList[j] << " ";
         }
         cout << endl;
     }
@@ -44,32 +44,60 @@ void printMatrix(struct city* cityData, int cityLength){
 //print tour if need be
 void printTour(struct city* cityData, int cityLength){
     for(int i = 0; i < cityLength; ++i){
-        cout << cityData[i].cityNumber << ", ";
+        cout << cityData[i].cityNumber << " ";
     }
     cout << endl;
     
     return;
 }
 
+void printTour(struct city** cityData, int cityLength){
+    for(int i = 0; i < cityLength; ++i){
+        cout << cityData[i]->cityNumber << " ";
+    }
+    cout << endl;
+    
+    return;
+}
+
+
 //calc route distance 
 long routeDistance(struct city* cityRoute, int cityLength){
     long tourLength = 0;
     
-    for(int i = 0; i < cityLength; ++i){
-        tourLength += cityRoute[i].distancesList[cityRoute[i + 1].cityNumber];
-    }
-    
+//    for(int i = 0; i < cityLength; ++i){
+//        if(i + 1 != cityLength)
+//            tourLength += cityRoute[i].distancesList[cityRoute[i + 1].cityNumber];
+//    }
     return tourLength;
 }
 
-void copyDistances(struct city* source, struct city* target, int length){
-    for(int i = 0; i < length; ++i){
-        for(int j = 0; j < length; ++j){
-            cout << target[i].cityNumber << endl;
-            target[i].distancesList[j] = source[target[i].cityNumber].distancesList[j];
-        }
+
+long routeDistance(struct city** cityRoute, int cityLength){
+    long tourLength = 0;
+    
+    
+    for(int i = 0; i < cityLength - 1; ++i){
+        //if(i + 1 != cityLength)
+        tourLength += cityRoute[i]->distancesList[cityRoute[i + 1]->cityNumber];
     }
-    return;
+    
+    //complete the circuit
+    //tourLength += cityRoute[cityLength - 1]->distancesList[0];
+    return tourLength;
+}
+
+
+struct city** convertIt(int tourArrray[], struct city* cityData, struct city** tempArray, int cityLength){
+    city* holder = NULL;
+    for(int i = 0; i < cityLength; ++i){
+        holder = &cityData[cityData[tourArrray[i]].cityNumber];
+        //cout << holder->cityNumber << " ";
+        tempArray[i] = holder;
+        //cout << tempArray[i]->cityNumber << " " ;
+    }
+    
+    return tempArray;
 }
 
 

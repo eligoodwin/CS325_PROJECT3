@@ -23,15 +23,14 @@ int main(int argc, const char * argv[]) {
     //handle cmd line argument
     if(argc == 1){
         cout << "No CMD line arugment was provided, using default: \"test.txt\"" << endl;
-        strcpy(fileIn, "tsp_example_3.txt");
+        strcpy(fileIn, "test-input-3.txt");
     }
     else{
         strcpy(fileIn, argv[1]);
     }
     
     //int* tour = NULL; //array for solution
-    struct city* tempTour = NULL;
-    struct city* finTour = NULL;
+    struct city** finTour = NULL;
     long totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
     class InAndOut stuff; //file input output object
@@ -53,32 +52,31 @@ int main(int argc, const char * argv[]) {
     
     //calc the distances
     makeDistances(cityCoordinates, cityLength);
-    //printTour(cityCoordinates, cityLength);
-    //print matrix
-    //printMatrix(cityCoordinates, cityLength);
-//    
-//    //allocate solution array
-//    int* tour = new int[cityLength];
-//    totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
-//    
-//    cout << totalDistance << endl;
-//    
-//    //calc runtime of alog
+    
+    //make city Tour array
+    int* T = new int[cityLength];
+    //get distance of greedy tour
+    totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
+    cout << "inital distance: " << totalDistance << endl;
+    for(int i = 0; i < cityLength; ++i){
+        cout << T[i] << " ";
+        
+    }
+    
+    cout << endl;
+    
+    //start the clock for the algo
     auto start = chrono::high_resolution_clock::now();
-    //int* T = NULL;
-    //totalDistance = nearestNeighbor(tour, cityCoordinates, cityLength);
+    //create new city tour with distance data
     
+    struct city** cityTour = new city*[cityLength];
+    //cout << cityLength  << endl;
     
-    //start algo
-    //begin
-    tempTour = nearestNeighbor(cityCoordinates, cityLength);
-    //copyDistances(cityCoordinates, tempTour, cityLength);
-    //printTour(tempTour, cityLength);
+    convertIt(T, cityCoordinates, cityTour, cityLength);
+   // printMatrix(cityTour, cityLength);
     
-    long testDistance = routeDistance(tempTour, cityLength);
-    cout << "current route distance: " << testDistance << endl;
     //init twoOPT
-    TWO_OPT twoOptItUp(cityLength, tempTour);
+    TWO_OPT twoOptItUp(cityLength, cityTour);
     
     //start algo
     finTour = twoOptItUp.OPT2ALGO();
@@ -89,17 +87,25 @@ int main(int argc, const char * argv[]) {
     
     cout << "Total runtime was: " << runTime << " milliseconds." << endl;
     //save runtime data
-    stuff.saveRunTime(runTime);
+    //stuff.saveRunTime(runTime);
     //calc final distance
     totalDistance  = routeDistance(finTour, cityLength);
     //save results
     stuff.saveResult(finTour, totalDistance, cityLength);
+    cout << "final distance: " << totalDistance <<endl;
+    printTour(finTour, cityLength);
     
+    cout << endl;
+    finTour = NULL;
     //clean everything up
-    //delete []solution;
+    for(int i = 0; i < cityLength; ++i){
+        delete [] cityCoordinates[i].distancesList;
+        cityCoordinates[i].distancesList = NULL;
+    }
     
-    delete []tempTour;
-    delete []cityCoordinates;
+    delete [] cityCoordinates;
+    delete [] cityTour;
+    cityCoordinates = NULL;
     
     return 0;
 }

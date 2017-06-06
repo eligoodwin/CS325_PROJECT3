@@ -29,7 +29,7 @@
 class TWO_OPT{
 public:
     //constructors and destructors
-    TWO_OPT(int lengthOfList, struct city * existingTour);
+    TWO_OPT(int lengthOfList, struct city** existingTour);
     ~TWO_OPT();
     
     //properties
@@ -47,13 +47,13 @@ public:
      ** Post-Conditions: None
      ** Return: returns a tour that has been swapped optimized
      *********************************************************************/
-    struct city* OPT2ALGO();
+    struct city** OPT2ALGO();
     
 private:
     //properties
-    struct city* newTour; // new tour
+    struct city** newTour; // new tour
     int cityLength; //city length
-    struct city* currentTour; //starting tour
+    struct city** currentTour; //starting tour
 
     //methods
     /*********************************************************************
