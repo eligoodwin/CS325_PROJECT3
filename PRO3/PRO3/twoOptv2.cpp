@@ -52,9 +52,10 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
 				newDistance = routeDistance(this->newTour, this->cityLength);
 				//if the new distance is shorter than the vest recorded distance, save the new route
 				if(newDistance < currentDistance){
-                    for(int k = 0; k < cityLength; ++k){
-                        this->currentTour[k] = this->newTour[k];
-                    }
+//                    for(int k = 0; k < cityLength; ++k){
+//                        this->currentTour[k] = this->newTour[k];
+//                    }
+                    this->currentTour = this->newTour;
                     //cout << "newest tour: " << endl;
                     //printTour(newTour, cityLength);
                 latestDistance = newDistance;
