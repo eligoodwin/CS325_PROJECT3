@@ -12,11 +12,11 @@
  ** The algorithm tests if the result of performing a swap creates a
  ** shorter route.
  ** eg:
- A     B--                          A ---- B--
-  \   /
-    x       Distance1 > ? Distance2
-  /   \
- X     Y--                          X ---- Y--
+     A     B--                          A ---- B--
+      \   /
+        x       Distance1 > ? Distance2
+      /   \
+     X     Y--                          X ---- Y--
  ** Input: preexisiting route, number of cities in the route
  ** Output: structs containing city coorditnate info, txt files with saved city data
  *********************************************************************/
@@ -31,16 +31,18 @@
 
 class TWO_OPTv2{
 public:
-    TWO_OPTv2(int cityListLength, struct city** existingTour);
+    TWO_OPTv2(int cityListLength, struct city** existingTour, long long* currentTime);
     ~TWO_OPTv2();
     struct city** twoOptAlgo2();
     void twoOptSwap(const int& startt, const int&end);
-    
+    long long currentRunTime;
     
 private:
     struct city** newTour;
     struct city** currentTour;
     int cityLength;
+    const long long maxTime = 170000; //2:50 
+    long long cannotExceed;
     
 };
 

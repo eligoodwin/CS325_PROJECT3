@@ -20,8 +20,8 @@
 
 using namespace std;
 int main(int argc, const char * argv[]) {
+    auto start = chrono::high_resolution_clock::now();
     char fileIn[20]; //store file name
-    
     //handle cmd line argument
     if(argc == 1){
         cout << "No CMD line arugment was provided, using default: \"test.txt\"" << endl;
@@ -36,6 +36,8 @@ int main(int argc, const char * argv[]) {
     int* T = NULL;
     long totalDistance = 0; //total distance of path
     long long runTime = 0; //stores runtime of the algo
+    long long runTime2 = 0; //stores runtime of the algo
+
     class InAndOut stuff; //file input output object
     
     int cityLength = 0; //stores length of input
@@ -57,7 +59,6 @@ int main(int argc, const char * argv[]) {
     makeDistances(cityCoordinates, cityLength);
     
     //calc runtime of alog
-    auto start = chrono::high_resolution_clock::now();
     
     //Start algo
     if (argc > 2) {
@@ -78,9 +79,10 @@ int main(int argc, const char * argv[]) {
                 struct city** cityTour = new city*[cityLength];
                 
                 convertIt(T, cityCoordinates, cityTour, cityLength);
-
+                auto elapsed2 = chrono::high_resolution_clock::now() - start;
+                runTime2 = chrono::duration_cast<std::chrono::milliseconds>(elapsed2).count();
                 //Init twoOPT
-                TWO_OPTv2 twoOptItUp(cityLength, cityTour);
+                TWO_OPTv2 twoOptItUp(cityLength, cityTour, &runTime2);
                 //Run 2OPT
                 finTour = twoOptItUp.twoOptAlgo2();
                 //printTour(finTour, cityLength);

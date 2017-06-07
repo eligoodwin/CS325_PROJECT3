@@ -1,10 +1,13 @@
 #include "twoOptv2.hpp"
 using namespace std;
-TWO_OPTv2::TWO_OPTv2(int cityListLength, struct city** existingTour){
+TWO_OPTv2::TWO_OPTv2(int cityListLength, struct city** existingTour, long long* runTime){
 	cityLength = cityListLength;
 	currentTour = existingTour;
 	newTour = new city* [cityLength];
-	for(int i = 0; i < cityLength; ++i){
+    currentRunTime = *runTime;
+    cannotExceed = maxTime - (currentRunTime) - 10000; //the maximum amount of time we have - minus time eplased thus far - padding
+    cout << "time cannot exceed: " <<cannotExceed << endl;
+    for(int i = 0; i < cityLength; ++i){
 		newTour[i] = currentTour[i];
 	}
 };
@@ -39,11 +42,13 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
 	long newDistance = routeDistance(currentTour, cityLength);
 	long currentDistance = LONG_MAX;
 	long latestDistance = 0;
-
+    
+    auto start = chrono::high_resolution_clock::now();
+    
 	while(newDistance < currentDistance){
 		//get distance of current route
 		currentDistance = routeDistance(currentTour, cityLength);
-		
+        
 		for(int i = 0; i < cityLength; ++i){
             for(int j = 0; j < cityLength; ++j){
 				//perform the swap to eliminate crossses
@@ -62,7 +67,13 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
 				}
 			}
 		}
-
+        
+        auto elapsed = chrono::high_resolution_clock::now() - start;
+        currentRunTime = chrono::duration_cast<std::chrono::milliseconds>(elapsed).count();
+        if(currentRunTime > maxTime){
+            cout << "out of time, hamster wheels coming off the rails" << endl;
+            return currentTour;
+        }
 		newDistance = latestDistance;
 	}
 
