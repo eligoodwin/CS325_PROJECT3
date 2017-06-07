@@ -36,14 +36,11 @@ void TWO_OPTv2::twoOptSwap(const int& start, const int& end){
 
 
 struct city** TWO_OPTv2::twoOptAlgo2(){
-    auto start = chrono::high_resolution_clock::now();
 	long newDistance = routeDistance(currentTour, cityLength);
 	long currentDistance = LONG_MAX;
 	long latestDistance = 0;
-    long long currentRunTime = 0;
-    long long maxTime = 1000000;
 
-	while(newDistance < currentDistance && currentRunTime < maxTime){
+	while(newDistance < currentDistance){
 		//get distance of current route
 		currentDistance = routeDistance(currentTour, cityLength);
 		
@@ -67,11 +64,6 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
 		}
 
 		newDistance = latestDistance;
-        auto elapsed = chrono::high_resolution_clock::now() - start;
-        currentRunTime = chrono::duration_cast<std::chrono::milliseconds>(elapsed).count();
-        if(currentRunTime > maxTime)
-            cout << "out of time :(" << endl;
-
 	}
 
 	return currentTour;

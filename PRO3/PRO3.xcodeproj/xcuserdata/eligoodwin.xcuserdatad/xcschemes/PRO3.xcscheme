@@ -64,11 +64,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "test-input-7.txt"
+            argument = "test-input-1.txt"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "3"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "2"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
