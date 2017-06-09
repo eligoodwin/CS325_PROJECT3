@@ -50,13 +50,14 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
 		currentDistance = routeDistance(currentTour, cityLength);
         
 		for(int i = 0; i < cityLength; ++i){
-            for(int j = 0; j < cityLength; ++j){
+            for(int j = i + 1; j < cityLength; ++j){
 				//perform the swap to eliminate crossses
 				twoOptSwap(i, j);
 				//is the new route shourter? let's find out
 				newDistance = routeDistance(this->newTour, this->cityLength);
 				//if the new distance is shorter than the vest recorded distance, save the new route
-				if(newDistance < currentDistance){
+				
+                if(newDistance < currentDistance){
                     for(int k = 0; k < cityLength; ++k){
                         this->currentTour[k] = this->newTour[k];
                     }
@@ -64,7 +65,8 @@ struct city** TWO_OPTv2::twoOptAlgo2(){
                     //cout << "newest tour: " << endl;
                     //printTour(newTour, cityLength);
                 latestDistance = newDistance;
-				}
+				
+                }
 			}
 		}
         

@@ -41,7 +41,7 @@ private:
     struct city** newTour;
     struct city** currentTour;
     int cityLength;
-    const long long maxTime = 170000; //2:50 
+    const long long maxTime = 160000; //2:40
     long long cannotExceed;
     
 };

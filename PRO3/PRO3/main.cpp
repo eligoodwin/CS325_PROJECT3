@@ -45,6 +45,8 @@ int main(int argc, const char * argv[]) {
     
     cityLength = stuff.getLength(fileIn); //what is the length/number of cities we are entering?
     //allocate the struct storing city data
+    
+    cout << "Number of cities: " << cityLength << endl;
     struct city* cityCoordinates = new city[cityLength];
     
     //read the data into the struct
@@ -77,7 +79,7 @@ int main(int argc, const char * argv[]) {
                 //totalDistance = nearestNeighbor(T, cityCoordinates, cityLength);
                 totalDistance = christofides(T, cityCoordinates, cityLength);
                 struct city** cityTour = new city*[cityLength];
-                
+                //take reulting city array and build a newish adjacency matrix
                 convertIt(T, cityCoordinates, cityTour, cityLength);
                 auto elapsed2 = chrono::high_resolution_clock::now() - start;
                 runTime2 = chrono::duration_cast<std::chrono::milliseconds>(elapsed2).count();
@@ -89,6 +91,8 @@ int main(int argc, const char * argv[]) {
                 totalDistance  = routeDistance(finTour, cityLength);
                 //save results
                 stuff.saveResult(finTour, totalDistance, cityLength);
+                delete []cityTour;
+
                 break;
             }
             case 3:
@@ -128,7 +132,6 @@ int main(int argc, const char * argv[]) {
     //clean everything up
     
     delete[] T;
-//    delete []cityTour;
     delete []cityCoordinates;
     
     return 0;
